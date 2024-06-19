@@ -1,0 +1,34 @@
+/* MyComponent.css */
+
+.dropdown {
+  position: absolute;
+  top: 30px; /* Adjust as needed */
+  right: 0; /* Adjust as needed */
+  background: white; /* Solid background */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+  margin-right: 30px;
+}
+
+.dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.dropdown li:hover {
+  background: #f0f0f0;
+}
+
+.icon {
+  cursor: pointer;
+  font-size: 30px;
+}
