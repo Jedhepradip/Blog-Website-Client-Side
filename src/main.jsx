@@ -17,6 +17,7 @@ import EditPostBlog from './components/Pages/EditPostBlog'
 import BlogComment from './components/Pages/BlogComment'
 import Forgrtpassword from './components/Pages/Forgrtpassword'
 import Password_to_forget from './components/Pages/Password_to_forget'
+import PageNotFound from './components/Pages/PageNotFound'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
       {
         path:"/Password_to_forget/:id",
         element:<Password_to_forget/>
+      },
+      {
+        path:"*",
+        element:<PageNotFound/>
       }
     ]
   }

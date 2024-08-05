@@ -74,7 +74,9 @@ const Home = () => {
         </ul>
       </div>
         <div className="flex w-full h-auto flex-wrap items-center justify-center">
+
           <Blog/>
+          
         </div>
       {/* FAQS */}
 

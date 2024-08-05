@@ -87,12 +87,11 @@ const SignIn = () => {
             <div className="bg-blue-200  flex items-center p-5">   {/* min-h-screen */}
                 <img src="https://media.istockphoto.com/id/1093508248/photo/modern-work-table-with-computer-laptop-and-cityscapes-view-from-window-business-concepts-ideas.jpg?s=612x612&w=0&k=20&c=vpMc1UR6KfgPe4GYcFG4x1FfPKLyYsoKqrAJolfBSZs=" alt="" className='absolute w-full h-[550px] object-cover blur-md' />
                 <div className="w-full relative">
-                    {/* <h2 className="text-center text-black-600 font-bold text-2xl uppercase mb-5">Registration</h2> */}
-                    <div class="about-section">
-                            <h1 class="about-title ">Registration <span></span></h1>
+
+                    <div className="bg-white pl-10 pr-10 pb-10 pt-2 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/3">
+                        <div className='flex justify-center items-center py-0 px-2'>
+                            <h1 className='text-[35px] font-serif p-3'>Registration</h1>
                         </div>
-                    <div className="bg-white p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/3">
-                       
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="mb-1">
                                 <label className="block mb-2 font-bold text-gray-600">Name</label>
@@ -129,11 +128,12 @@ const SignIn = () => {
                                 <label className="block mb-2 font-bold text-gray-600">CPassword</label>
                                 <input {...register("Cpassword", {
                                     required: { value: true, message: "This Field Is Required" },
-                                    minLength: { value: 8, message: "Min Length Is 8" },
-                                    maxLength: { value: 12, message: "Max Length Is 12" }
+                                    minLength: { value: 6, message: "Min Length Is 6" },
+                                    maxLength: { value: 10, message: "Max Length Is 10" }
                                 })} type="password" id="Cpassword" placeholder="Put In Your Password." className="border border-gray-300 shadow p-3 w-full rounded mb-" />
                                 {errors.Cpassword && <div className='block mb-2 font-bold  text-center text-red-500'>{errors.Cpassword.message}</div>}
                             </div>
+
                             <span><NavLink to="/Login" id='a' className={({ isActive }) => `${isActive} text-blue-700 text-[14px] mt-1 `}>Already Has An Account</NavLink></span>
                             <button type='submit' className="block w-full bg-blue-500 text-white font-bold p-4 mt-5 rounded-lg">Submit</button>
                             {show && <div className='block mb-2 font-bold  text-center text-red-500'>{show}</div>}

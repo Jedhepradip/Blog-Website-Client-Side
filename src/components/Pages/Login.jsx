@@ -57,44 +57,39 @@ const Login = () => {
     }
     return (
         <div>
-            <div className="bg-blue-200 flex items-center p-5">   {/* min-h-screen */}
-                <img src="https://media.istockphoto.com/id/537706522/photo/overhead-image-of-a-female-blogger-writing-on-the-laptop.jpg?s=612x612&w=0&k=20&c=DLQWu1ss06K9oEeW6R1tIpGMn58ZlgFyj_wrOWKRFn0=" alt="" className='absolute w-full h-[480px] object-cover blur-md' />
-                <div className="w-full relative">
-                    {/* <h2 className="text-center text-black-600 font-bold text-2xl uppercase mb-5">Login</h2>
-                     */}
-                       <div className="about-section">
-                            <h1 className="about-title">LOGIN<span></span></h1>
+            <div className="about-section">
+                <h1 className="about-title">LOGIN<span></span></h1>
+            </div>
+            <div className=" flex items-center justify-center p-5">   {/* min-h-screen */}
+                {/* md:w-3/4 mx-auto lg:w-1/3 */}
+                <div className="bg-slate-200 py-5 px-5 rounded-lg mb-5 shadow md:w-[30%] w-[90%]">
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <div className="mb-1">
+                            <label className="block mb-2 font-bold text-gray-600">Email</label>
+                            <input {...register("email", {
+                                required: { value: true, message: "This Field Is Required" },
+                                minLength: { value: 10, message: "Min Length Is 10" },
+                                maxLength: { value: 30, message: "Max Length Is 30" }
+                            })} type="email" id="email" placeholder="Put In Your Email." className="border border-gray-300 shadow py-3 px-3 w-full rounded-lg" />
+                            {errors.email && <div className='block mb-2 font-bold  text-center text-red-500'>{errors.email.message}</div>}
                         </div>
-                    <div className="bg-white p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/3">
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <div className="mb-1">
-                                <label className="block mb-2 font-bold text-gray-600">Email</label>
-                                <input {...register("email", {
-                                    required: { value: true, message: "This Field Is Required" },
-                                    minLength: { value: 10, message: "Min Length Is 10" },
-                                    maxLength: { value: 30, message: "Max Length Is 30" }
-                                })} type="email" id="email" placeholder="Put In Your Email." className="border border-gray-300 shadow p-3 w-full rounded mb-" />
-                                {errors.email && <div className='block mb-2 font-bold  text-center text-red-500'>{errors.email.message}</div>}
-                            </div>
 
-                            <div className="mb-1">
-                                <label className="block mb-2 font-bold text-gray-600">Password</label>
-                                <input {...register("password", {
-                                    required: { value: true, message: "This Field Is Required" },
-                                    minLength: { value: 0, message: "Min Length Is 8" },
-                                })} type="password" id="password" placeholder="Put In Your Password." className="border border-gray-300 shadow p-3 w-full rounded mb-" />
-                                {errors.password && <div className='block mb-2 font-bold  text-center text-red-500'>{errors.password.message}</div>}
+                        <div className="mb-1">
+                            <label className="block mb-2 font-bold text-gray-600">Password</label>
+                            <input {...register("password", {
+                                required: { value: true, message: "This Field Is Required" },
+                                minLength: { value: 0, message: "Min Length Is 8" },
+                            })} type="password" id="password" placeholder="Put In Your Password." className="border border-gray-300 shadow py-3 px-3 w-full rounded mb-" />
+                            {errors.password && <div className='block mb-2 font-bold  text-center text-red-500'>{errors.password.message}</div>}
 
-                            </div>
+                        </div>
 
-                            <button type='submit' className="block w-full bg-blue-500 text-white font-bold p-4 mt-5 rounded-lg">Submit</button>
+                        <button type='submit' className="block w-full bg-blue-500 text-white rounded-lg text-[22px] font-serif py-2 mt-3">Submit</button>
 
-                            <NavLink to="/Forgrtpassword"><button className="ml-[65px] block w-[60%]  text-blue-600 font-bold p-2 rounded-lg">Forgot Password</button></NavLink>
+                        <NavLink to="/Forgrtpassword"><button className="ml-[65px] block w-[60%]  text-blue-600 font-bold p-2 rounded-lg">Forgot Password</button></NavLink>
 
-                            <NavLink to="/SignIn"><button type='submit' className="ml-[65px] block w-[60%] bg-green-500 text-white font-bold p-2 mt-5 rounded-lg">Create New Account</button></NavLink>
-
-                        </form>
-                    </div>
+                        <NavLink to="/SignIn"><button type='submit' className="ml-[65px] block w-[60%] bg-green-500 text-white p-2 mt-2 rounded-lg">Create New Account</button></NavLink>
+                    </form>
                 </div>
             </div>
         </div>

@@ -14,11 +14,11 @@ const PostBlog = () => {
         data.append('title', formData.Title);
         data.append('Desc', formData.Desc);
         data.append('Date', formData.Date);
-        
-        console.log("FromDate",formData.Title);
-        console.log("fromDate",formData);
 
-        console.log("date to the Post Blog :",data);
+        console.log("FromDate", formData.Title);
+        console.log("fromDate", formData);
+
+        console.log("date to the Post Blog :", data);
 
         try {
             const token = localStorage.getItem("Token");
@@ -35,7 +35,7 @@ const PostBlog = () => {
 
             if (response.ok) {
                 Swal.fire("Success", "Blog Upload successfully", "success");
-                Navigate("/Blog")
+                Navigate("/")
             } else {
                 Swal.fire("Error", result.message || "There was an error submitting the blog post", "error");
             }
@@ -68,7 +68,11 @@ const PostBlog = () => {
                             <div className="mb-1">
                                 <label className="block mb-2 font-bold text-gray-600">Title</label>
                                 <input
-                                    {...register("Title", { required: "This Field Is Required" })}
+                                    {...register("Title", {
+                                        required: { value: true, message: "This Field Is Required" },
+                                        minLength: { value: 40, message: "Min Length is 40 Word" },
+                                        maxLength: { value: 80, message: "Max Length Is 80 word" }
+                                    })}
                                     type="text"
                                     id="Title"
                                     placeholder="Put In Your Title."
@@ -80,7 +84,12 @@ const PostBlog = () => {
                             <div className="mb-1">
                                 <label className="block mb-2 font-bold text-gray-600">Desc</label>
                                 <textarea
-                                    {...register("Desc", { required: "This Field Is Required" })}
+                                    {...register("Desc", {
+                                        required: { value: true, message: "This Field Is Required" },
+                                        minLength: { value: 210, message: "Min Length is 210 Word" },
+                                        maxLength: { value: 250, message: "Max Length Is 250 word" }
+                                    })}
+
                                     type="text"
                                     id="Desc"
                                     placeholder="Put In Your Desc."

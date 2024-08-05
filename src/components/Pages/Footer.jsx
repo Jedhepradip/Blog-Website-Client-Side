@@ -1,107 +1,74 @@
 import React from 'react';
-import { FaHome } from 'react-icons/fa';
-import { IoCall } from 'react-icons/io5';
-import { GiRotaryPhone } from 'react-icons/gi';
-import { MdEmail } from 'react-icons/md';
+import { FaFacebook, FaGoogle, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 const Footer = () => {
   return (
     <>
-    <footer
-      className="bg-gray-800 text-white text-center dark:bg-neutral-600 dark:text-neutral-200 lg:text-left mt-0">
-         <div className="mx-6 py-10 text-center md:text-left">
+      <div className='bg-gray-800 text-white py-5 px-2'>
+        <div className='flex flex-wrap justify-around items-center mb-5 cursor-pointer'>
+          <ul className='w-full md:w-auto mb-4 md:mb-0 md:mt-0 mt-5'>
+            <h3 className='text-2xl mb-3 uppercase font-serif'>Support</h3>
+            <li className='font-serif py-1 hover:font-bold'>FAQ</li>
+            <li className='font-serif py-1 hover:font-bold'>Contact Us</li>
+            <li className='font-serif py-1 hover:font-bold'>Privacy Policy</li>
+            <li className='font-serif py-1 hover:font-bold'>Terms of Service</li>
+          </ul>
 
-        <div className="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <ul className='w-full md:w-auto mb-4 md:mb-0 md:mt-0 mt-5'>
+            <h3 className='text-2xl mb-3 uppercase font-serif'>Discover</h3>
+            <li className='font-serif py-1 hover:font-bold'>Latest Posts</li>
+            <li className='font-serif py-1 hover:font-bold'>Popular Tags</li>
+            <li className='font-serif py-1 hover:font-bold'>Categories</li>
+            <li className='font-serif py-1 hover:font-bold'>Archives</li>
+          </ul>
 
-          <div className="">
-            <h6
-              className="mb-4 flex items-center justify-center font-semibold uppercase md:justify-start">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="mr-3 h-4 w-4">
-                <path
-                  d="M12.378 1.602a.75.75 0 00-.756 0L3 6.632l9 5.25 9-5.25-8.622-5.03zM21.75 7.93l-9 5.25v9l8.628-5.032a.75.75 0 00.372-.648V7.93zM11.25 22.18v-9l-9-5.25v8.57a.75.75 0 00.372.648l8.628 5.033z" />
-              </svg>
-              TW Elements
-            </h6>
-            <p>
-              Here you can use rows and columns to organize your footer
-              content. Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit.
-            </p>
-          </div>
-          <div className="">
-            <h6
-              className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
-              service
-            </h6>
-            <p className="mb-4">
-              <a className="text-neutral-600 dark:text-neutral-200"
-              >HOME</a>
-            </p>
-            <p className="mb-4">
-              <a className="text-neutral-600 dark:text-neutral-200  "
-              >ABOUT</a>
-            </p>
-            <p className="mb-4">
-              <a className="text-neutral-600 dark:text-neutral-200"
-              >BLOG</a>
-            </p>
-            <p>
-              <a className="text-neutral-600 dark:text-neutral-200"
-              >CONTACT</a>
-            </p>
-          </div>
-          {/* <!-- Useful links section --> */}
-          <div className="">
-            <h6
-              className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
-              Useful links
-            </h6>
-            <p className="mb-4">
-              <a className="text-neutral-600 dark:text-neutral-200"
-              >Pricing</a>
-            </p>
-            <p className="mb-4">
-              <a className="text-neutral-600 dark:text-neutral-200"
-              >Settings</a>
-            </p>
-            <p className="mb-4">
-              <a className="text-neutral-600 dark:text-neutral-200"
-              >Orders</a>
-            </p>
-            <p>
-              <a className="text-neutral-600 dark:text-neutral-200"
-              >Help</a>
-            </p>
-          </div>
-          {/* <!-- Contact section --> */}
-          <div>
-            <h6
-              className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
-              Contact
-            </h6>
-            <p className="mb-4 flex items-center justify-center md:justify-start">
-              <FaHome className='mr-3 h-5 w-5'/>
-              Bhavinimgaon , Maharashtra
-            </p>
-            <p className="mb-4 flex items-center justify-center md:justify-start">
-            <MdEmail className='mr-3 h-5 w-5'/>
-              PradipJedhe69@gmail.com
-            </p>
-            <p className="mb-4 flex items-center justify-center md:justify-start">
-            <IoCall className='mr-3 h-5 w-5'/>
-             8459844605
-            </p>
-            <p className="flex items-center justify-center md:justify-start">
-             <GiRotaryPhone className='mr-3 h-5 w-5'/>
-              + 01 234 567 89
-            </p>
-          </div>
+          <ul className='w-full md:w-auto mb-4 md:mb-0 md:mt-0 mt-5'>
+            <h3 className='text-2xl mb-3 uppercase font-serif'>Blog</h3>
+            <li className='font-serif py-1 hover:font-bold'> Personal Blog</li>
+            <li className='font-serif py-1 hover:font-bold'>Food Blog</li>
+            <li className='font-serif py-1 hover:font-bold'>Travel Blog</li>
+            <li className='font-serif py-1 hover:font-bold'>Lifestyle Blogs</li>
+          </ul>
+
+          <ul className='w-full md:w-auto mb-4 md:mb-0 md:mt-0 mt-5'>
+            <h3 className='text-2xl mb-3 uppercase font-serif'>Partners</h3>
+            <li className='font-serif py-1 hover:font-bold'>Advertise with Us</li>
+            <li className='font-serif py-1 hover:font-bold'>Write for Us</li>
+            <li className='font-serif py-1 hover:font-bold'>Affiliate Program</li>
+            <li className='font-serif py-1 hover:font-bold'>Sponsorships</li>
+          </ul>
+
+          <ul className='w-full md:w-auto md:mt-0 mt-5'>
+            <h3 className='text-2xl mb-3 uppercase font-serif'>About</h3>
+            <li className='font-serif py-1 hover:font-bold'>Our Story</li>
+            <li className='font-serif py-1 hover:font-bold'>Team</li>
+            <li className='font-serif py-1 hover:font-bold'>Careers</li>
+            <li className='font-serif py-1 hover:font-bold'>Contact</li>
+          </ul>
+
+          <ul className='w-full md:w-auto md:mt-0 mt-5'>
+            <h3 className='text-2xl mb-3 uppercase font-serif'>Subscribe</h3>
+            <li className='font-serif py-1'>Email: pradipjedhe69@gmail.com</li>
+            <li className='font-serif py-1'>Contact: +91 8459844605</li>
+            <li className='font-serif py-1'>Address: Bhavinimgaon, Tal.Shevgaon</li>
+            <li className='font-serif py-0'>
+              <div className='flex justify-around items-center'>
+                <a href="https://in.linkedin.com/">
+                  <FaLinkedinIn className='text-3xl bg-white h-9 mt-4 w-9 p-1 rounded-[50%] text-black' />
+                </a>
+                <a href="https://www.instagram.com/">
+                  <FaInstagram className='text-3xl bg-white h-9 mt-4 w-9 p-1 rounded-[50%] text-black' />
+                </a>
+                <a href="https://www.google.co.in/">
+                  <FaGoogle className='text-3xl bg-white h-9 mt-4 w-9 p-1 rounded-[50%] text-black' />
+                </a>
+                <a href="https://m.facebook.com/">
+                  <FaFacebook className='text-3xl bg-white h-9 mt-4 w-9 p-1 rounded-[50%] text-black' />
+                </a>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
-    </footer>
     </>
   )
 }

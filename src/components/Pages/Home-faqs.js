@@ -17,15 +17,15 @@ const Faq = [
     {
         question: "How long does it take for blogging to pay for itself?", answer: "What about the break-even point? Blogging is an investment between paying for content, images, development work, and management. "
     },
-    {
-        question: "How can I check my current blog posts to see if they're any good?", answer: "What you're looking for is called a 'content audit.' A content audit looks at your entire blog and analyzes every post."
-    },
-    {
-        question: "I get a ton of outreach emails for my blog. What should I do with them?", answer: "One of the essential elements of SEO is links pointing to your site from other, better websites. Everyone who has a blog with any traffic at all will eventually start getting these emails"
-    },
-    {
-        question: "How do I steer my visitors towards becoming customers?", answer: "Know why your users are finding you. What do they want when they search? What are they hoping to find? Provide that to them, and you will build trust and authority with them"
-    },
+    // {
+    //     question: "How can I check my current blog posts to see if they're any good?", answer: "What you're looking for is called a 'content audit.' A content audit looks at your entire blog and analyzes every post."
+    // },
+    // {
+    //     question: "I get a ton of outreach emails for my blog. What should I do with them?", answer: "One of the essential elements of SEO is links pointing to your site from other, better websites. Everyone who has a blog with any traffic at all will eventually start getting these emails"
+    // },
+    // {
+    //     question: "How do I steer my visitors towards becoming customers?", answer: "Know why your users are finding you. What do they want when they search? What are they hoping to find? Provide that to them, and you will build trust and authority with them"
+    // },
 ];
 
 export default Faq;

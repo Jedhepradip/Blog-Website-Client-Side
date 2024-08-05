@@ -1,10 +1,13 @@
-import { Link, NavLink } from 'react-router-dom';
-import { FaBars, FaUser } from "react-icons/fa";
-import './Navigation.css';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Navigation = () => {
-  const [token, setToken] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [Token, setToken] = useState(null);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   useEffect(() => {
     const storedToken = localStorage.getItem("Token");
@@ -14,38 +17,61 @@ const Navigation = () => {
   }, []);
 
   return (
-    <header>
-      <nav className="Navigation text-white bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-        <ul className="max-w-[90vw] flex flex-wrap justify-between items-center mx-auto py-5">
-          <li className="flex items-center">
-            <Link to="/" className="flex items-center space-x-3">
-              <div className="flex items-center justify-center w-[50px] h-[50px] bg-green-500 text-white rounded-full">
-                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c2.28 0 4-1.72 4-4s-1.72-4-4-4-4 1.72-4 4 1.72 4 4 4zM2.24 9.36a9 9 0 0117.52 0C19.1 14.93 16.46 18.57 12 20.24c-4.46-1.67-7.1-5.31-7.76-10.88z"></path>
-                </svg>
-              </div>
-              <span className="text-3xl font-bold text-green-500 font-pacifico">Pradip</span>
-             
-            </Link>
-          </li>
-          <input type="checkbox" id="check" className="hidden" />
-          <span className="menu flex items-center space-x-8 bg-transparent font-bold">
-            <li><NavLink to="/" activeClassName="text-red-700">Home</NavLink></li>
-            <li><NavLink to="/About" activeClassName="text-red-700">About</NavLink></li>
-            <li><NavLink to="/Gallery" activeClassName="text-red-700">Gallery</NavLink></li>
-            <li><NavLink to="/Contact" activeClassName="text-red-700">Contact</NavLink></li>
-            {token ? (
-              <li><NavLink to="/Profile"><FaUser className="h-7 w-7" /></NavLink></li>
-            ) : (
-              <li><NavLink to="/SignIn">Sign In</NavLink></li>
-            )}
-            <label htmlFor="check" className="close-menu">X</label>
-          </span>
-          <label htmlFor="check" className="open-menu cursor-pointer"><FaBars className="h-7 w-7" /></label>
-        </ul>
-      </nav>
-    </header>
+    <nav className="bg-gray-800 text-white border-gray-200 dark:bg-gray-900">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="https://flowbite.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
+          {/* <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" /> */}
+          <span className="self-center text-3xl whitespace-nowrap dark:text-white font-bold  font-serif">Pradip</span>
+        </a>
+        <button
+          id="menu-toggle"
+          data-collapse-toggle="navbar-default"
+          type="button"
+          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          aria-controls="navbar-default"
+          aria-expanded={isMenuOpen}
+          onClick={toggleMenu}
+        >
+          <span className="sr-only">Open main menu</span>
+          <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
+          </svg>
+        </button>
+        <div className={`${isMenuOpen ? '' : 'hidden'} w-full md:block md:w-auto`} id="navbar-default">
+          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-800 text-white md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-gray-800 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 font-serif">
+            <li>
+              <NavLink to={"/"} className="block py-2 px-3 text-white rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500 bg-neutral-500" aria-current="page"><h1 className='py-1 px-3'>Home</h1></NavLink>
+            </li>
+
+            <li>
+              <NavLink to={"/About"}  className="block py-2 px-3 rounded hover:bg-gray-100 hover:text-black md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent bg-gray-700 text-white md:mt-0 mt-3"><h1 className='p-1 px-3'>About</h1></NavLink>
+            </li>
+           
+            <li>
+              <NavLink to={"/Gallery"}  className="block py-2 px-3 rounded hover:bg-gray-100 hover:text-black md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent bg-gray-700 text-white md:mt-0 mt-3"><h1 className='p-1 px-3'>Gallery</h1></NavLink>
+            </li>
+
+            <li>
+              <NavLink to={"/Contact"} className="block py-2 px-3 rounded hover:bg-gray-100 hover:text-black md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent bg-gray-700 text-white md:mt-0 mt-3"><h1 className='p-1 px-3'>Contact</h1></NavLink>
+            </li>
+
+            {Token ?
+              <>
+                <li>
+                  <NavLink to={"/Profile"} className="block py-2 px-3 rounded hover:bg-gray-100 hover:text-black md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent bg-gray-700 text-white md:mt-0 mt-3"><h1 className='py-1 px-3'>Profile</h1></NavLink>
+                </li>
+              </>
+              :
+              <>
+                <li>
+                  <NavLink to={'/SignIn'} className="block py-2 px-3 rounded hover:bg-gray-100 hover:text-black md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent bg-blue-800 text-white md:mt-0 mt-3"><h1 className='py-1 px-3'>SignIn</h1></NavLink>
+                </li>
+              </>}
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
-}
+};
 
 export default Navigation;

@@ -26,52 +26,49 @@ const Contact = () => {
   }
   return (
     <div>
-      <div className="relative bg-blue-200 flex items-center min-h-screen p-0">
-        <img src="https://as2.ftcdn.net/v2/jpg/08/12/75/39/1000_F_812753919_EDfGcM93UCQIf76LYr8jO8KMQ2c3Gmlk.jpg" alt="" className='absolute w-full h-full object-cover blur-md' />
-
-        <div className="relative w-full flex justify-center p-5 object-cover">
-
-          <div className="bg-white p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-2/5 ">
-            <div class="about-section">
-              <h1 class="about-title ">Contact <span>US</span></h1>
-            </div>
+      <div className="relative flex items-center min-h-screen">
+        <div className="relative w-full flex p-7 justify-center items-center object-cover">
+          <div className="bg-neutral-200 py-5 px-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-2/5">
+            <div class="about-section"><h1 class="about-title">Contact <span>US</span></h1></div>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="mb-4">
-                <label className="block mb-2 font-bold text-gray-600">Name</label>
+              <div className="mb-2">
+                <label className="block mb-1 font-bold text-gray-600 text-[18px] font-serif">Name</label>
                 <input {...register("name", {
                   required: { value: true, message: "This Field Is Required" },
-                })} type="text" id="name" placeholder="Put In Your Fullname." className="border border-gray-300 shadow p-3 w-full rounded mb-1" />
-                {errors.name && <div className='block mb-2 font-bold text-center text-red-500'>{errors.name.message}</div>}
+                })} type="text" id="name" placeholder="Put In Your Fullname." className="border border-gray-300 shadow md:py-[11px] py-3 px-2 w-full rounded" />
+                {errors.name && <div className='block font-bold text-center text-red-500'>{errors.name.message}</div>}
               </div>
 
-              <div className="mb-4">
-                <label className="block mb-2 font-bold text-gray-600">Number</label>
+              <div className="mb-3">
+                <label className="block mb-1 font-bold text-gray-600 text-[18px] font-serif">Number</label>
                 <input {...register("number", {
                   required: { value: true, message: "This Field Is Required" }
-                })} type="text" id="number" placeholder="Put In Your Number." className="border border-gray-300 shadow p-3 w-full rounded mb-1" />
-                {errors.number && <div className='block mb-2 font-bold text-center text-red-500'>{errors.number.message}</div>}
+                })} type="text" id="number" placeholder="Put In Your Number." className="border border-gray-300 shadow md:py-[11px] py-3 px-2 w-full rounded " />
+                {errors.number && <div className='block font-bold text-center text-red-500'>{errors.number.message}</div>}
               </div>
 
-              <div className="mb-4">
-                <label className="block mb-2 font-bold text-gray-600">Subject</label>
+              <div className="mb-3">
+                <label className="block mb-1 font-bold text-gray-600 text-[18px] font-serif">Subject</label>
                 <input {...register("subject", {
                   required: { value: true, message: "This Field Is Required" }
-                })} type="text" id="subject" placeholder="Put In Your Subject." className="border border-gray-300 shadow p-3 w-full rounded mb-1" />
-                {errors.subject && <div className='block mb-2 font-bold text-center text-red-500'>{errors.subject.message}</div>}
+                })} type="text" id="subject" placeholder="Put In Your Subject." className="border border-gray-300 shadow md:py-[11px] py-3 px-2 w-full rounded" />
+                {errors.subject && <div className='block font-bold text-center text-red-500'>{errors.subject.message}</div>}
               </div>
 
-              <div className="mb-4">
-                <label className="block mb-2 font-bold text-gray-600">Message</label>
+              <div className="mb-3">
+                <label className="block mb-1 font-bold text-gray-600 text-[18px] font-serif">Message</label>
                 <textarea {...register("message", {
                   required: { value: true, message: "This Field Is Required" }
-                })} id="message" placeholder="Put In Your Message." className="border border-gray-300 shadow p-3 w-full rounded mb-1" />
-                {errors.message && <div className='block mb-2 font-bold text-center text-red-500'>{errors.message.message}</div>}
+                })} id="message" placeholder="Put In Your Message." className="border border-gray-300 shadow 
+                md:py-[11px] py-3 px-2 w-full rounded" />
+                {errors.message && <div className='block font-bold text-center text-red-500'>{errors.message.message}</div>}
               </div>
-              <button type='submit' className="block w-full bg-blue-500 text-white font-bold p-4 mt-5 rounded-lg">Submit</button>
+              <button type='submit' className="block bg-blue-500 text-white font-serif text-[23px]  rounded-lg md:py-[5px] py-3 px-2 w-full">Submit</button>
             </form>
           </div>
         </div>
       </div>
+
     </div>
   )
 }

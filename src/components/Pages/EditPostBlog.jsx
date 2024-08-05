@@ -69,7 +69,6 @@ const EditPostBlog = () => {
 
     return (
         <div>
-            { }
             <div className="bg-blue-200 flex items-center p-5">
                 <img src="https://media.istockphoto.com/id/1093508248/photo/modern-work-table-with-computer-laptop-and-cityscapes-view-from-window-business-concepts-ideas.jpg?s=612x612&w=0&k=20&c=vpMc1UR6KfgPe4GYcFG4x1FfPKLyYsoKqrAJolfBSZs=" alt="" className='absolute w-full h-[550px] object-cover blur-md' />
                 <div className="w-full relative">
@@ -91,25 +90,35 @@ const EditPostBlog = () => {
                             <div className="mb-1">
                                 <label className="block mb-2 font-bold text-gray-600">Title</label>
                                 <input
-                                    {...register("Title")}
+                                    {...register("Title", {
+                                        required: { value: true, message: "Click to The Chcek Box || This Field Is Required" },
+                                        minLength: { value: 40, message: "Min Length is 40 Word" },
+                                        maxLength: { value: 80, message: "Max Length Is 80 word" }
+                                    })}
                                     type="text"
                                     id="Title"
                                     defaultValue={defaultdate.Title}
                                     placeholder="Put In Your Title."
                                     className="border border-gray-300 shadow p-3 w-full rounded mb-"
                                 />
+                                {errors.Title && <div className='block mb-2 font-bold text-center text-red-500'>{errors.Title.message}</div>}
                             </div>
 
                             <div className="mb-1">
                                 <label className="block mb-2 font-bold text-gray-600">Desc</label>
                                 <textarea
-                                    {...register("Desc")}
+                                    {...register("Desc", {
+                                        required: { value: true, message: "Click to The Chcek Box || This Field Is Required" },
+                                        minLength: { value: 210, message: "Min Length is 210 Word" },
+                                        maxLength: { value: 250, message: "Max Length Is 250 word" }
+                                    })}
                                     type="text"
                                     id="Desc"
                                     defaultValue={defaultdate.Desc}
                                     placeholder="Put In Your Desc."
                                     className="border border-gray-300 shadow p-3 w-full rounded mb-"
                                 />
+                                {errors.Desc && <div className='block mb-2 font-bold text-center text-red-500'>{errors.Desc.message}</div>}
                             </div>
 
                             <div className="mb-1">

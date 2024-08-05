@@ -4,8 +4,10 @@ import { FaSignOutAlt, FaUserEdit } from 'react-icons/fa';
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { NavLink, json } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { AiOutlineHeart } from 'react-icons/ai';
 import Swal from 'sweetalert2';
+import { RxCross2 } from 'react-icons/rx';
 import './Profile.css';
 
 const Profile = () => {
@@ -15,7 +17,10 @@ const Profile = () => {
     const [blogDate, setBlogDate] = useState([]);
     const [UserId, setUserId] = useState(null);
     const [visibleDropdown, setVisibleDropdown] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const token = localStorage.getItem("Token");
 
@@ -36,18 +41,25 @@ const Profile = () => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                const data = await response.json();
-                setUserId(data._id);
-                setUserData(data);
-                setLoading(false);
+                if (response.ok) {
+                    const data = await response.json();
+                    setUserId(data.user._id);
+                    setUserData(data.user);
+                    setBlogDate(data.Blogarr)
+                    setLoading(false);
+                }
             } catch (error) {
                 setError(error.message);
                 setLoading(false);
             }
         };
         fetchUserProfile();
-    }, [navigate]);
+    }, [navigate, userData]);
 
+
+    const toggleModal = () => {
+        setIsModalOpen(!isModalOpen);
+    };
 
     const likeblog = async (like) => {
         const response = await fetch(`http://localhost:3000/blog/like/${like}`, {
@@ -59,35 +71,8 @@ const Profile = () => {
         })
         const data = await response.json()
         if (!response.ok) return console.log(response.status);
-        console.log(data);
+        console.log("data like :",data);
     }
-
-
-    useEffect(() => {
-        if (UserId) {
-            const ShowBlogPostDate = async () => {
-               
-                try {
-                    const response = await fetch(`http://localhost:3000/BlogPostDate/Profile/${UserId}`, {
-                        method: "GET",
-                        headers: {
-                            "Content-Type": "application/json",
-                            Authorization: `Bearer ${token}`
-                        }
-                    });
-
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    const data = await response.json();
-                    setBlogDate(data);
-                } catch (error) {
-                    console.error("Error fetching blog post data:", error);
-                }
-            };
-            ShowBlogPostDate();
-        }
-    }, [likeblog]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -108,24 +93,35 @@ const Profile = () => {
         refreshPage();
     };
 
-    const handleEditProfile = async (UserId) => {
-        const token = localStorage.getItem('Token');
+
+    // user profile Eidt 
+    const onSubmit = async (formData) => {
         try {
-            let response = await fetch(`http://localhost:3000/EditProfile/${UserId}`, {
-                method: "GET",
+
+            console.log("formData :", formData);
+
+            const token = localStorage.getItem("Token");
+
+            const response = await fetch("http://localhost:3000/User/Profile/Edit", {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`
-                }
+                },
+                body: JSON.stringify(formData)
             });
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
             const data = await response.json();
-            console.log("Profile Data", data);
+            if (!response.ok) {
+                console.log(data.status);
+            }
+            if (response.ok) {
+                console.log("rani rani ", data);
+                console.log(data.message);
+                toggleModal()
+            }
         } catch (error) {
-            console.error("Error fetching profile data:", error);
+            console.error("Error updating profile:", error);
         }
     };
 
@@ -154,56 +150,148 @@ const Profile = () => {
         }
     }
 
+
     return (
         <>
-            <div className="h-screen bg-gray-200 dark:bg-gray-800 flex flex-wrap items-center justify-center">
-                <div className="container lg:w-2/6 xl:w-2/7 sm:w-full md:w-2/3 bg-white shadow-lg transform duration-200 ease-in-out">
-                    <div className="h-[180px] overflow-hidden">
-                        <img className="w-full" src="https://images.unsplash.com/photo-1605379399642-870262d3d051?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80" alt="" />
-                    </div>
-                    <div className="flex justify-center px-5 -mt-12">
-                        <img className="h-32 w-32 bg-white p-2 rounded-full" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80" alt="" />
-                    </div>
-                    <div>
-                        <div className="text-center px-14">
-                            <h2 className="text-gray-800 text-3xl font-bold">{userData.Name}</h2>
-                            <a className="text-gray-400 mt-2 hover:text-blue-500" href="https://www.instagram.com/immohitdhiman/" target="_blank" rel="noopener noreferrer">{userData.Email}</a>
-                            <p className="mt-2 text-gray-500 text-sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+            <div className='relative bg-slate-50 dark:bg-gray-800 flex flex-wrap items-center justify-center font-serif'>
+                {!isModalOpen &&
+                    <div className="min-h-screen p-8">
+                        <div className="container mx-auto bg-white p-6 rounded-lg shadow-md">
+                            <div className="flex items-center space-x-4">
+                                <img
+                                    src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFIFrTTCKBB9Y5EJV6a7_yC03klrgBV4pfKSzzExMvrKp13Fo7DkUFOtfC&s=10"}
+                                    alt="Profile"
+                                    className="w-24 h-24 rounded-full border-2 border-black"
+                                />
+                                <div>
+                                    <h2 className="text-2xl font-semibold text-gray-800">{userData.Name}</h2>
+                                    {/* <p className="text-gray-600">email</p> */}
+                                </div>
+                            </div>
+
+                            <div className="mt-6">
+                                <h3 className="text-xl font-semibold text-gray-700">Personal Information</h3>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                    <div className="bg-gray-50 p-4 rounded-lg shadow-md">
+                                        <h4 className="font-semibold text-gray-700">Name</h4>
+                                        <p className="text-gray-600">{userData.Name}</p>
+                                    </div>
+                                    <div className="bg-gray-50 p-4 rounded-lg shadow-md">
+                                        <h4 className="font-semibold text-gray-700">Email</h4>
+                                        <p className="text-gray-600">{userData.Email}</p>
+                                    </div>
+                                    <div className="bg-gray-50 p-4 rounded-lg shadow-md">
+                                        <h4 className="font-semibold text-gray-700">Phone</h4>
+                                        <p className="text-gray-600">91+</p>
+                                    </div>
+                                    <div className="bg-gray-50 p-4 rounded-lg shadow-md">
+                                        <h4 className="font-semibold text-gray-700">Address</h4>
+                                        <p className="text-gray-600">123 Street Name, City, Country</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="mt-6">
+                                <h3 className="text-xl font-semibold text-gray-700">Account Settings</h3>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 font-serif">
+
+                                    <h1
+                                    //  onClick={() => handleEditProfile(UserId)}
+                                    >
+                                        <button className="bg-blue-500 text-white flex w-full gap-2 py-2 px-4 rounded-lg shadow-md" onClick={() => toggleModal()}>
+                                            <FaBlog className='felx text-[22px]' />
+                                            Update
+                                        </button>
+                                    </h1>
+
+                                    <NavLink to="/PostBlog">
+                                        <button className="bg-green-500 w-full flex text-white gap-2 py-2 px-4 rounded-lg shadow-md">
+                                            <FaUserEdit className='flex text-[25px]' />
+                                            Post Blog
+                                        </button>
+                                    </NavLink>
+
+                                    <button className="bg-red-500 text-white flex gap-2 py-2 px-4 rounded-lg shadow-md" onClick={() => handleLogout()}>
+                                        <FaSignOutAlt className='flex text-[22px]' />
+                                        Logout
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <hr className="mt-6" />
-                        <div className="flex bg-gray-50">
-                            <div className="text-center w-1/3 p-4 hover:bg-gray-100 cursor-pointer">
-                                <NavLink to="/PostBlog">
-                                    <p className="flex items-center justify-center">
-                                        <FaBlog className="mr-2" />
-                                        <span className="font-semibold">Post Blog</span>
-                                    </p>
-                                </NavLink>
-                            </div>
-                            <div className="text-center w-1/3 p-4 hover:bg-gray-100 cursor-pointer">
-                                <NavLink to="/EditProfile" onClick={() => handleEditProfile(UserId)}>
-                                    <p className="flex items-center justify-center">
-                                        <FaUserEdit className="mr-2" />
-                                        <span className="font-semibold">Edit Profile</span>
-                                    </p>
-                                </NavLink>
-                            </div>
-                            <div className="text-center w-1/3 p-4 hover:bg-gray-100 cursor-pointer" onClick={handleLogout}>
-                                <p className="flex items-center justify-center">
-                                    <FaSignOutAlt className="mr-2" />
-                                    <span className="font-semibold">Logout</span>
-                                </p>
+                    </div>
+                }
+
+                {isModalOpen && (
+                    <>
+                        <div className='p-10'>
+                            <div className="bg-white flex items-center">
+                                <div className="max-w-sm rounded-lg overflow-hidden shadow-lg mx-auto p-1">
+                                    <RxCross2 onClick={() => toggleModal()}
+                                        className="float-right text-2xl ml-5 text-red-500 font-extrabold" />
+                                    <div className="py-5 px-10">
+                                        <h2 className="text-2xl font-bold text-gray-800 mb-3">Welcome to Edit Profile</h2>
+                                        <form onSubmit={handleSubmit(onSubmit)}>
+
+                                            <div className="mb-1">
+                                                <label className="block text-gray-700 font-bold mb-2" htmlFor="username">
+                                                    Username
+                                                </label>
+                                                <input
+                                                    {...register('Name')}
+                                                    className="shadow appearance-none border rounded w-full py-3 px-10 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                    id="username"
+                                                    defaultValue={userData.Name}
+                                                    type="text"
+                                                    name="Name"
+                                                    placeholder="Username"
+                                                />
+                                            </div>
+
+                                            <div className="mb-1">
+                                                <label className="block text-gray-700 font-bold mb-2" htmlFor="Email">
+                                                    Email
+                                                </label>
+                                                <input
+                                                    {...register('Email')}
+                                                    className="shadow appearance-none border rounded w-full py-3 px-10 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                    name="email"
+                                                    defaultValue={userData.Email}
+                                                    type="email"
+                                                    placeholder="Eamil"
+                                                />
+                                            </div>
+
+                                            <div className="mb-1">
+                                                <label className="block mb-2 font-bold text-gray-600">Create New Password</label>
+                                                <input
+                                                    {...register("Password")}
+                                                    type="password"
+                                                    id="password"
+                                                    placeholder="Password"
+                                                    name="Password"
+                                                    className="border border-gray-300 shadow p-3 w-full rounded mb-1"
+                                                />
+                                            </div>
+
+                                            <div className="flex items-center justify-between">
+                                                <button
+                                                    type="submit"
+                                                    className="bg-blue-500 mt-1 w-full border hover:bg-blue-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline">
+                                                    Update Profile
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </>
+                )}
             </div>
 
-            <h2 className="text-center text-black font-bold text-2xl uppercase mb-5 mt-5">User Created Post</h2>
+            <h2 className="text-center text-black text-2xl uppercase mb-5 mt-5 font-serif">User Created Post</h2>
 
-
-            {console.log("blog Date :", blogDate)}
-            <div className='p-5 bg-neutral-300 flex justify-around flex-wrap items-center'>
+            <div className='p-5 bg-neutral-300 flex justify-around flex-wrap items-center font-serif'>
                 {blogDate.map((val, index) => (
                     <div key={index} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <div className="float-right font-serif text-[20px] relative">
