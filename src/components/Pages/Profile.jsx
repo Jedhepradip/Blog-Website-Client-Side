@@ -9,7 +9,8 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import Swal from 'sweetalert2';
 import { RxCross2 } from 'react-icons/rx';
 import './Profile.css';
-import { Filter } from '@mui/icons-material';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Profile = () => {
     const [userData, setUserData] = useState(null);
@@ -22,6 +23,7 @@ const Profile = () => {
     const [UserProfUserEdit, setuserandeditnone] = useState(false)
     const [file, setFile] = useState(null);// Post Blog
     const [defaultdate, setdefaultdate] = useState([{}])
+    const [BlogId, setBlogId] = useState()
     const [EditPostBlog, setEditpostblog] = useState(false)
 
     const navigate = useNavigate();
@@ -61,7 +63,7 @@ const Profile = () => {
             }
         };
         fetchUserProfile();
-    }, [navigate]);
+    }, [navigate, userData]);
 
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
@@ -75,6 +77,8 @@ const Profile = () => {
     const handelPostEdit = async (BlogId) => {
         setEditpostblog(!EditPostBlog)
         if (BlogId.length > 10) {
+            setBlogId(BlogId)
+            console.log("Blog Id", BlogId);
             try {
                 const response = await fetch(`http://localhost:3000/findBlog/${BlogId}`, {
                     method: "GET",
@@ -86,14 +90,21 @@ const Profile = () => {
                 let respondate = await response.json()
                 if (!response.ok) {
                     console.log(respondate.status);
+                    toast.error(respondate.Message)
                 }
                 if (response.ok) {
+                    toast.success(respondate.Message)
                     setdefaultdate(respondate)
                     console.log(respondate);
                 }
             } catch (error) {
                 console.log(error);
+                toast.error("Something went wrong!")
             }
+        } else {
+            console.log("okok");
+
+            setdefaultdate("")
         }
     }
 
@@ -146,12 +157,19 @@ const Profile = () => {
             const data = await response.json();
             if (!response.ok) {
                 console.log(data.status);
+                toast.error(data.Message)
             }
             if (response.ok) {
-                toggleModal()
+                console.log(data);
+                
+                toast.success("response.Message :",data.Message)
+                setTimeout(() => {
+                    toggleModal()
+                }, [1000])
             }
         } catch (error) {
             console.error("Error updating profile:", error);
+            toast.error(error)
         }
     };
 
@@ -253,7 +271,7 @@ const Profile = () => {
     return (
         <div className='bg-slate-50'>
             <div className='relative bg-slate-50 dark:bg-gray-800 flex flex-wrap items-center justify-center font-serif'>
-
+                <ToastContainer />
                 {!UserProfUserEdit && <>
                     {!isModalOpen &&
                         <div className="min-h-screen p-8">
@@ -542,6 +560,7 @@ const Profile = () => {
                                     className="float-right text-2xl ml-5 text-red-500 font-extrabold" />
                                 <div className="py-5 px-10 font-serif">
                                     <form onSubmit={handelPostEditform}>
+
                                         <div className="mb-1">
                                             <label className="block mb-2 font-bold text-gray-600">Img</label>
                                             <input
@@ -593,7 +612,7 @@ const Profile = () => {
                                                 {...register("Date")}
                                                 type="date"
                                                 id="Date"
-                                                // defaultValue={defaultdate.Date}
+                                                defaultValue={defaultdate.Date}
                                                 className="border border-gray-300 shadow p-3 w-full rounded mb-"
                                             />
                                         </div>
@@ -605,7 +624,6 @@ const Profile = () => {
                                                 Submit
                                             </button>
                                         </div>
-                                        {/* <button type='submit' className="block w-full bg-blue-500 text-white font-bold p-4 mt-5 rounded-lg">Submit</button> */}
                                     </form>
                                 </div>
                             </div>
