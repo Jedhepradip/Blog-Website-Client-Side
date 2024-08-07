@@ -16,6 +16,7 @@ import BlogComment from './components/Pages/BlogComment'
 import Forgrtpassword from './components/Pages/Forgrtpassword'
 import Password_to_forget from './components/Pages/Password_to_forget'
 import PageNotFound from './components/Pages/PageNotFound'
+// import EditBlog from './components/Pages/EditBlog'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -76,7 +77,11 @@ const router = createBrowserRouter([
       {
         path:"*",
         element:<PageNotFound/>
-      }
+      },
+      // {
+      //   path:"/Editblog/:id",
+      //   element:<EditBlog/>
+      // }
     ]
   }
 ])

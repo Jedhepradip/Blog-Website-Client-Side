@@ -9,13 +9,13 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import Swal from 'sweetalert2';
 import { RxCross2 } from 'react-icons/rx';
 import './Profile.css';
+import { Filter } from '@mui/icons-material';
 
 const Profile = () => {
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [blogDate, setBlogDate] = useState([]);
-    const [UserId, setUserId] = useState(null);  // remove the 
     const [visibleDropdown, setVisibleDropdown] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [showpostblogfrom, setshowpostblogfroms] = useState(false)
@@ -23,6 +23,7 @@ const Profile = () => {
     const [file, setFile] = useState(null);// Post Blog
     const [defaultdate, setdefaultdate] = useState([{}])
     const [EditPostBlog, setEditpostblog] = useState(false)
+
     const navigate = useNavigate();
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -49,7 +50,7 @@ const Profile = () => {
                 }
                 if (response.ok) {
                     const data = await response.json();
-                    setUserId(data.user._id);
+                    // setUserId(data.user._id);
                     setUserData(data.user);
                     setBlogDate(data.Blogarr)
                     setLoading(false);
@@ -60,8 +61,7 @@ const Profile = () => {
             }
         };
         fetchUserProfile();
-    }, [navigate, userData]);
-
+    }, [navigate]);
 
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
@@ -72,14 +72,36 @@ const Profile = () => {
         setshowpostblogfroms(!showpostblogfrom)
     }
 
-    const handelPostEdit = (BlogId) => {
-        const Blog = blogDate.filter(e => {
-            if (e._id == BlogId) {
-                setdefaultdate(e);
+    const handelPostEdit = async (BlogId) => {
+        setEditpostblog(!EditPostBlog)    
+        if (BlogId.length > 10) {
+            try {
+                const response = await fetch(`http://localhost:3000/findBlog/${BlogId}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${localStorage.getItem("Token")}`
+                    }
+                })
+                let respondate = await response.json()
+                if (!response.ok) {
+                    console.log(respondate.status);
+                }
+                if (response.ok) {
+                    setdefaultdate(respondate)   
+                    console.log(respondate);
+                                   
+                }
+            } catch (error) {
+                console.log(error);
             }
-        })
-        setEditpostblog(!EditPostBlog)
+        }
+        // else{
+        //     setdefaultdate(" ")
+        // }
     }
+    
+    console.log("respondate :",defaultdate); 
 
     // User Like Blogs
     const likeblog = async (like) => {
@@ -116,7 +138,6 @@ const Profile = () => {
         const fromdata = new FormData(e.target)
         const obj = Object.fromEntries(fromdata.entries())
         console.log("pradip", obj);
-
         try {
             const token = localStorage.getItem("Token");
             const response = await fetch("http://localhost:3000/User/Profile/Edit", {
@@ -133,8 +154,6 @@ const Profile = () => {
                 console.log(data.status);
             }
             if (response.ok) {
-                console.log("rani rani ", data);
-                console.log(data.message);
                 toggleModal()
             }
         } catch (error) {
@@ -173,11 +192,6 @@ const Profile = () => {
         data.append('title', formData.Title);
         data.append('Desc', formData.Desc);
         data.append('Date', formData.Date);
-
-        console.log("FromDate", formData.Title);
-        console.log("fromDate", formData);
-
-        console.log("date to the Post Blog :", data);
 
         try {
             const token = localStorage.getItem("Token");
@@ -219,7 +233,7 @@ const Profile = () => {
 
         try {
             const token = localStorage.getItem("Token");
-            const response = await fetch(`http://localhost:3000/blog/edit/${defaultdate[0]._id}`, {
+            const response = await fetch(`http://localhost:3000/blog/edit/${BlogId}`, {
                 method: "PUT",
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -240,9 +254,6 @@ const Profile = () => {
             console.log(error);
         }
     }
-
-
-    console.log(defaultdate);
 
 
     return (
@@ -474,7 +485,6 @@ const Profile = () => {
             {!EditPostBlog &&
                 <>
                     <h2 className="text-center text-black text-2xl uppercase mb-5 mt-5 font-serif">User Created Post</h2>
-
                     <div className='p-5 bg-slate-50 flex justify-around flex-wrap items-center font-serif'>
                         {blogDate.map((val, index) => (
                             <div key={index} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -484,8 +494,9 @@ const Profile = () => {
                                         {visibleDropdown === index && (
                                             <div className="dropdown">
                                                 <ul>
-                                                    <li onClick={() => { handelPostEdit(val._id) }}>Edit</li>
+                                                    <li onClick={() => handelPostEdit(val._id)}>Edit</li>
                                                     <li onClick={() => { DeleteOnclick(val._id) }}>Delete</li>
+                                                    {/* <Link to={"/Editblog/"+val._id}>Edit</Link> */}
                                                 </ul>
                                             </div>
                                         )}
@@ -533,19 +544,16 @@ const Profile = () => {
                     <div className='p-10'>
                         <div className="bg-slate-50 flex items-center">
                             <div className="max-w-sm rounded-lg overflow-hidden shadow-lg mx-auto p-1">
-                                <RxCross2 onClick={() => handelPostEdit()}
+                                <RxCross2 onClick={() => handelPostEdit("1234")}
                                     className="float-right text-2xl ml-5 text-red-500 font-extrabold" />
                                 <div className="py-5 px-10 font-serif">
-
                                     <form onSubmit={handelPostEditform}>
-
                                         <div className="mb-1">
                                             <label className="block mb-2 font-bold text-gray-600">Img</label>
                                             <input
                                                 {...register("Img")}
                                                 type="file"
                                                 id="Img"
-                                                defaultValue={defaultdate.Image}
                                                 className="border border-gray-300 shadow py-2 px-2 w-full rounded mb-"
                                                 onChange={(e) => setFile(e.target.files[0])}
                                             />
@@ -591,7 +599,7 @@ const Profile = () => {
                                                 {...register("Date")}
                                                 type="date"
                                                 id="Date"
-                                                defaultValue={defaultdate.Date}
+                                                // defaultValue={defaultdate.Date}
                                                 className="border border-gray-300 shadow p-3 w-full rounded mb-"
                                             />
                                         </div>
