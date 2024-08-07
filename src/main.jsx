@@ -11,8 +11,6 @@ import Blog from './components/Pages/Blog'
 import SignIn from './components/Pages/SignIn'
 import Login from './components/Pages/Login'
 import Profile from './components/Pages/Profile'
-import PostBlog from './components/Pages/PostBlog'
-import EditProfile from './components/Pages/EditProfile'
 import EditPostBlog from './components/Pages/EditPostBlog'
 import BlogComment from './components/Pages/BlogComment'
 import Forgrtpassword from './components/Pages/Forgrtpassword'
@@ -54,15 +52,7 @@ const router = createBrowserRouter([
       {
         path: "/Profile",
         element: <Profile />
-      },
-      {
-        path: "/PostBlog",
-        element: <PostBlog />
-      },
-      {
-        path: "/EditProfile",
-        element: <EditProfile />
-      },
+      },          
       {
         path: "/EditPostBlog/:id",
         element: <EditPostBlog />

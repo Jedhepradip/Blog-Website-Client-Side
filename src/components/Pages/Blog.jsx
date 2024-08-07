@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import "./Blog.css";
 import { AiOutlineHeart } from 'react-icons/ai';
 import { FaRegComment } from 'react-icons/fa6';
 import { NavLink } from 'react-router-dom';
@@ -21,6 +20,7 @@ const Blog = () => {
     if (!response.ok) return console.log(response.status);
     console.log(data);
   }
+
   const getTheDateToBlogs = async () => {
     try {
       const response = await fetch('http://localhost:3000/Blog/Date', {
@@ -128,20 +128,12 @@ const Blog = () => {
               </a>
               <div className="p-5">
 
-
                 <a href="#">
                   <h5 className="mb-2 text-2xl font-bold font-serif tracking-tight text-gray-900 dark:text-white">{val.Title}</h5>
                 </a>
-
-
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 font-serif">{val.Desc}</p>
-
-
-
                 <a className="inline-flex items-center px-3 py-2 text-sm text-center text-black rounded-lg text-[21px] font-bold">
                 Date  {val.Date} </a>
-
-
 
                 <div className="flex items-center justify-center gap-2 float-right mt-2">
                   <NavLink to={`/BlogComment/${val._id}`}>
@@ -150,7 +142,6 @@ const Blog = () => {
                   <span className='text-[20px] font-semibold text-gray-600 dark:text-gray-300'>{val.comment?.length || 0}</span>
                 </div>
 
-
                 <div className="flex items-center justify-center gap-2 float-right mt-2">
                   <AiOutlineHeart
                     onClick={() => { likeblog(val._id) }}
@@ -158,7 +149,6 @@ const Blog = () => {
                   />
                   <span className='text-[20px] font-semibold text-gray-600 dark:text-gray-300 mr-5'>{val.likes?.length || 0}</span>
                 </div>
-
 
               </div>
             </div>

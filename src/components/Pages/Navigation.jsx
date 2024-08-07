@@ -17,7 +17,7 @@ const Navigation = () => {
   }, []);
 
   return (
-    <nav className="bg-gray-800 text-white border-gray-200 dark:bg-gray-900">
+    <nav className="bg-gray-800 text-white border-gray-200 dark:bg-gray-900 sticky t-0 l-0">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="https://flowbite.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
           {/* <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" /> */}
@@ -44,11 +44,11 @@ const Navigation = () => {
             </li>
 
             <li>
-              <NavLink to={"/About"}  className="block py-2 px-3 rounded hover:bg-gray-100 hover:text-black md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent bg-gray-700 text-white md:mt-0 mt-3"><h1 className='p-1 px-3'>About</h1></NavLink>
+              <NavLink to={"/About"} className="block py-2 px-3 rounded hover:bg-gray-100 hover:text-black md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent bg-gray-700 text-white md:mt-0 mt-3"><h1 className='p-1 px-3'>About</h1></NavLink>
             </li>
-           
+
             <li>
-              <NavLink to={"/Gallery"}  className="block py-2 px-3 rounded hover:bg-gray-100 hover:text-black md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent bg-gray-700 text-white md:mt-0 mt-3"><h1 className='p-1 px-3'>Gallery</h1></NavLink>
+              <NavLink to={"/Gallery"} className="block py-2 px-3 rounded hover:bg-gray-100 hover:text-black md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent bg-gray-700 text-white md:mt-0 mt-3"><h1 className='p-1 px-3'>Gallery</h1></NavLink>
             </li>
 
             <li>

@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { useNavigate, useParams } from 'react-router-dom';
-import "./Password.css";
+// import "./Password.css";
 
 const PasswordToForget = () => {
     const navigate = useNavigate();
