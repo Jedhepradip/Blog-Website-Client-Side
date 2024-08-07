@@ -73,7 +73,7 @@ const Profile = () => {
     }
 
     const handelPostEdit = async (BlogId) => {
-        setEditpostblog(!EditPostBlog)    
+        setEditpostblog(!EditPostBlog)
         if (BlogId.length > 10) {
             try {
                 const response = await fetch(`http://localhost:3000/findBlog/${BlogId}`, {
@@ -88,20 +88,14 @@ const Profile = () => {
                     console.log(respondate.status);
                 }
                 if (response.ok) {
-                    setdefaultdate(respondate)   
+                    setdefaultdate(respondate)
                     console.log(respondate);
-                                   
                 }
             } catch (error) {
                 console.log(error);
             }
         }
-        // else{
-        //     setdefaultdate(" ")
-        // }
     }
-    
-    console.log("respondate :",defaultdate); 
 
     // User Like Blogs
     const likeblog = async (like) => {
