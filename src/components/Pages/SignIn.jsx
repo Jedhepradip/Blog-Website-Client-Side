@@ -3,7 +3,9 @@ import { NavLink, json } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
-import Cookies from 'js-cookie'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Token } from '@mui/icons-material'
 
 const SignIn = () => {
     const navigate = useNavigate()
@@ -39,37 +41,19 @@ const SignIn = () => {
                     body: JSON.stringify(data)
                 })
                 let res = await r.json()
-                // console.log(res.token);
-                // console.log(res.Id);
-                // console.log("message :", res.message);
-
                 if (!r.ok) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: res.message,
-                        footer: '<a href="#">Why do I have this issue?</a>'
-                    });
-                    navigate("/SignIn")
-                    // console.log(res);
+                    toast.error(res.message)
+                    setTimeout(() => {
+                        navigate("/SignIn")
+                    }, [700])
                 }
                 else {
-                    navigate("/")
-
-                    localStorage.setItem("Token", res.token)
-                    const refreshPage = () => {
-                        window.location.reload();
-                    };
-
-                    Swal.fire({
-                        position: 'center', // Use 'center' instead of 'top-center'
-                        icon: 'success',
-                        title: 'Congratulations! Registration Successful',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-
-                    refreshPage();
+                    let token = res.token
+                    localStorage.setItem("Token",token)
+                    toast.success("Congratulations! Registration Successful")
+                    setTimeout(() => {
+                        navigate("/")
+                    }, 800);
                 }
                 seterror("")
             }
@@ -84,7 +68,8 @@ const SignIn = () => {
     return (
         <div>
             {/* {console.log("dateData",dateData.Name)} */}
-            <div className="bg-blue-200  flex items-center p-5">   {/* min-h-screen */}
+            <ToastContainer />
+            <div className="bg-blue-200  flex items-center p-5 font-serif">   {/* min-h-screen */}
                 <img src="https://media.istockphoto.com/id/1093508248/photo/modern-work-table-with-computer-laptop-and-cityscapes-view-from-window-business-concepts-ideas.jpg?s=612x612&w=0&k=20&c=vpMc1UR6KfgPe4GYcFG4x1FfPKLyYsoKqrAJolfBSZs=" alt="" className='absolute w-full h-[550px] object-cover blur-md' />
                 <div className="w-full relative">
 
@@ -135,7 +120,9 @@ const SignIn = () => {
                             </div>
 
                             <span><NavLink to="/Login" id='a' className={({ isActive }) => `${isActive} text-blue-700 text-[14px] mt-1 `}>Already Has An Account</NavLink></span>
-                            <button type='submit' className="block w-full bg-blue-500 text-white font-bold p-4 mt-5 rounded-lg">Submit</button>
+                            
+                            <button type='submit' className="block w-full bg-blue-500 text-white rounded-lg text-[22px] font-serif py-2 mt-3">Submit</button>
+
                             {show && <div className='block mb-2 font-bold  text-center text-red-500'>{show}</div>}
                         </form>
                     </div>

@@ -44,7 +44,7 @@ const Blog = () => {
 
   useEffect(() => {
     getTheDateToBlogs();
-  }, [likeblog]);
+  }, [likeblog,blogDate]);
 
 
 
@@ -119,13 +119,13 @@ const Blog = () => {
               key={index}
               className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-2xl dark:bg-gray-800 dark:border-gray-700 p-0"
             >
-              <a href="#">
+              <div className='overflow-hidden'>
                 <img
                   src={`http://localhost:3000/${val.Image}`}
                   alt="Image"
-                  className="p-1 w-[100%] h-[280px] object-cover rounded-t-lg"
+                  className="p-1 w-[100%] h-[280px] object-cover rounded-t-lg rounded-l transform transition duration-300 hover:scale-110 hover:rounded-l"
                 />
-              </a>
+              </div>
               <div className="p-5">
 
                 <a href="#">

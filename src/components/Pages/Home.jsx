@@ -59,7 +59,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className="carousel">
+      <div className="carousel mt-96">
         <ul className="slides">
           <input type="radio" name="radio-buttons" id="img-1" checked={currentSlide === 1} readOnly />
           <li className="slide-container">

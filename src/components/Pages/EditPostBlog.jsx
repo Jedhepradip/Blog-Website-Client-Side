@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useParams, useLocation, json } from 'react-router-dom';
+import { RxCross2 } from 'react-icons/rx';
+import { useParams, useLocation, json, NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const EditPostBlog = () => {
     const [file, setFile] = useState(null);
@@ -36,15 +39,20 @@ const EditPostBlog = () => {
                 },
                 body: data // Send FormData directly
             });
-            const Postdate = JSON.stringify(response)
             if (!response.ok) {
                 const errorData = await response.json();
                 console.log(errorData.message);
+                toast.error(errorData.message)
             }
-            console.log("Postdate :", Postdate);
-            navigate("/Profile")
+            if (response.ok) {
+                toast.success("Blog Post Edit successfully...")
+                setTimeout(() => {
+                    navigate("/Profile")
+                }, [900])
+            }
         } catch (error) {
             console.log(error);
+            toast.error(error)
         }
     };
 
@@ -69,71 +77,81 @@ const EditPostBlog = () => {
 
     return (
         <div>
-            <div className="bg-blue-200 flex items-center p-5">
-                <img src="https://media.istockphoto.com/id/1093508248/photo/modern-work-table-with-computer-laptop-and-cityscapes-view-from-window-business-concepts-ideas.jpg?s=612x612&w=0&k=20&c=vpMc1UR6KfgPe4GYcFG4x1FfPKLyYsoKqrAJolfBSZs=" alt="" className='absolute w-full h-[550px] object-cover blur-md' />
-                <div className="w-full relative">
-                    <h2 className="text-center text-black-600 font-bold text-2xl uppercase mb-5">Edit Post Blog</h2>
-                    <div className="bg-white p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/3">
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <div className="mb-1">
-                                <label className="block mb-2 font-bold text-gray-600">Img</label>
-                                <input
-                                    {...register("Img")}
-                                    type="file"
-                                    id="Img"
-                                    defaultValue={defaultdate.Image}
-                                    className="border border-gray-300 shadow p-3 w-full rounded mb-"
-                                    onChange={(e) => setFile(e.target.files[0])}
-                                />
-                            </div>
+            <h2 className="text-center text-black text-3xl uppercase mb-5 mt-5 font-serif">Edit Post Blog...</h2>
+            <div className='p-10'>
+            <ToastContainer />
+                <div className="flex items-center">
+                    <div className="max-w-sm rounded-lg overflow-hidden shadow-lg mx-auto p-1">
+                        <NavLink to={"/Profile"}>
+                            <RxCross2 className="float-right text-2xl ml-5 text-red-500 font-extrabold" />
+                        </NavLink>
+                        <div className="py-5 px-10 font-serif">
+                            <form onSubmit={handleSubmit(onSubmit)}>
 
-                            <div className="mb-1">
-                                <label className="block mb-2 font-bold text-gray-600">Title</label>
-                                <input
-                                    {...register("Title", {
-                                        required: { value: true, message: "Click to The Chcek Box || This Field Is Required" },
-                                        minLength: { value: 40, message: "Min Length is 40 Word" },
-                                        maxLength: { value: 80, message: "Max Length Is 80 word" }
-                                    })}
-                                    type="text"
-                                    id="Title"
-                                    defaultValue={defaultdate.Title}
-                                    placeholder="Put In Your Title."
-                                    className="border border-gray-300 shadow p-3 w-full rounded mb-"
-                                />
-                                {errors.Title && <div className='block mb-2 font-bold text-center text-red-500'>{errors.Title.message}</div>}
-                            </div>
+                                <div className="mb-1">
+                                    <label className="block mb-2 font-bold text-gray-600">Img</label>
+                                    <input
+                                        {...register("Img")}
+                                        type="file"
+                                        id="Img"
+                                        className="border border-gray-300 shadow py-2 px-2 w-full rounded mb-"
+                                        onChange={(e) => setFile(e.target.files[0])}
+                                    />
+                                </div>
 
-                            <div className="mb-1">
-                                <label className="block mb-2 font-bold text-gray-600">Desc</label>
-                                <textarea
-                                    {...register("Desc", {
-                                        required: { value: true, message: "Click to The Chcek Box || This Field Is Required" },
-                                        minLength: { value: 210, message: "Min Length is 210 Word" },
-                                        maxLength: { value: 250, message: "Max Length Is 250 word" }
-                                    })}
-                                    type="text"
-                                    id="Desc"
-                                    defaultValue={defaultdate.Desc}
-                                    placeholder="Put In Your Desc."
-                                    className="border border-gray-300 shadow p-3 w-full rounded mb-"
-                                />
-                                {errors.Desc && <div className='block mb-2 font-bold text-center text-red-500'>{errors.Desc.message}</div>}
-                            </div>
+                                <div className="mb-1">
+                                    <label className="block mb-2 font-bold text-gray-600">Title</label>
+                                    <input
+                                        {...register("Title", {
+                                            required: { value: true, message: "Click to The Check Box || This Field Is Required" },
+                                            minLength: { value: 40, message: "Min Length is 40 Words" },
+                                            maxLength: { value: 80, message: "Max Length Is 80 Words" }
+                                        })}
+                                        type="text"
+                                        id="Title"
+                                        defaultValue={defaultdate.Title}
+                                        placeholder="Put In Your Title."
+                                        className="border border-gray-300 shadow py-3 px-2 w-full rounded mb-"
+                                    />
+                                    {errors.Title && <div className='block mb-2 font-bold text-center text-red-500'>{errors.Title.message}</div>}
+                                </div>
 
-                            <div className="mb-1">
-                                <label className="block mb-2 font-bold text-gray-600">Date</label>
-                                <input
-                                    {...register("Date")}
-                                    type="date"
-                                    id="Date"
-                                    defaultValue={defaultdate.Date}
-                                    className="border border-gray-300 shadow p-3 w-full rounded mb-"
-                                />
-                            </div>
+                                <div className="mb-1">
+                                    <label className="block mb-2 font-bold text-gray-600">Desc</label>
+                                    <textarea
+                                        {...register("Desc", {
+                                            required: { value: true, message: "Click to The Check Box || This Field Is Required" },
+                                            minLength: { value: 210, message: "Min Length is 210 Words" },
+                                            maxLength: { value: 250, message: "Max Length Is 250 Words" }
+                                        })}
+                                        id="Desc"
+                                        defaultValue={defaultdate.Desc}
+                                        placeholder="Put In Your Description."
+                                        className="border border-gray-300 shadow py-2 px-2 w-full rounded mb-"
+                                    />
+                                    {errors.Desc && <div className='block mb-2 font-bold text-center text-red-500'>{errors.Desc.message}</div>}
+                                </div>
 
-                            <button type='submit' className="block w-full bg-blue-500 text-white font-bold p-4 mt-5 rounded-lg">Submit</button>
-                        </form>
+                                <div className="mb-1">
+                                    <label className="block mb-2 font-bold text-gray-600">Date</label>
+                                    <input
+                                        {...register("Date")}
+                                        type="date"
+                                        id="Date"
+                                        defaultValue={defaultdate.Date}
+                                        className="border border-gray-300 shadow p-3 w-full rounded mb-"
+                                    />
+                                </div>
+
+                                <div className="flex items-center justify-between">
+                                    <button
+                                        type="submit"
+                                        className="bg-blue-500 mt-1 w-full border hover:bg-blue-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline">
+                                        Submit
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

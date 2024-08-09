@@ -36,12 +36,12 @@ const Gallery = () => {
         {
             img: "https://media.istockphoto.com/id/1223068153/photo/happy-young-woman-writing-notes-in-her-notebook-while-sitting-at-a-cafe.jpg?s=612x612&w=0&k=20&c=-4WsSZjFQov4sI1E9R3TWG2uv2VjPzQsRj16QDUd-Fo=",
         },
-         {
-             img: "https://media.istockphoto.com/id/1187179171/photo/futuristic-office.jpg?s=612x612&w=0&k=20&c=GbJoBwiAVklbGLD0rkk67xyYBk_cuoSP-D-ujEHGLdo="
-         },
-         {
-             img: "https://media.istockphoto.com/id/1646303198/photo/business-woman-sitting-at-desk-with-professional-expression-sitting-at-work-with-a-tablet-in.jpg?s=612x612&w=0&k=20&c=gOJEyzJ7NX2bQBQrFWKSnh26DAsSJPDlLNGnepNu5mY=",
-         },
+        {
+            img: "https://media.istockphoto.com/id/1187179171/photo/futuristic-office.jpg?s=612x612&w=0&k=20&c=GbJoBwiAVklbGLD0rkk67xyYBk_cuoSP-D-ujEHGLdo="
+        },
+        {
+            img: "https://media.istockphoto.com/id/1646303198/photo/business-woman-sitting-at-desk-with-professional-expression-sitting-at-work-with-a-tablet-in.jpg?s=612x612&w=0&k=20&c=gOJEyzJ7NX2bQBQrFWKSnh26DAsSJPDlLNGnepNu5mY=",
+        },
         {
             img: "https://media.istockphoto.com/id/1307865374/photo/women-writing-note-book-on-the-table.jpg?s=612x612&w=0&k=20&c=4n7ArlOMBVTFX6pAvIL0GWpDmwv-WGrheyPP21ft-HE="
         },
@@ -52,7 +52,7 @@ const Gallery = () => {
 
     return (
         <>
-            <div class="about-section">
+            <div class="about-section uppercase">
                 <h1 class="about-title">Gallery <span>Blog</span></h1>
             </div>
             <div className='grid md:grid-cols-3 auto-rows-[300px] gap-4 my-10 overflow-hidden'>
@@ -69,99 +69,6 @@ const Gallery = () => {
                         <img src={val.img} alt="" className='rounded-xl w-[100%] h-[100%]' />
                     </div>
                 ))}
-            </div>
-        {/* </>
-        <> */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div className="card">
-                    <img src="https://images.pexels.com/photos/15286/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" className="card-img-top" alt="..." />
-                    <div className="card-body">
-                    </div>
-                </div>
-                <div className="card p-3">
-                    <blockquote className="blockquote mb-0 card-body">
-                    </blockquote>
-                </div>
-                <div className="card">
-                    <img src="https://images.pexels.com/photos/15286/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" className="card-img-top" alt="..." />
-                    <div className="card-body">
-                    </div>
-                </div>
-                <div className="card bg-primary text-white text-center p-3">
-                    <blockquote className="blockquote mb-0">
-                    </blockquote>
-                </div>
-                <div className="card text-center">
-                    <div className="card-body">
-                        <img src="https://images.pexels.com/photos/15286/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                    </div>
-                </div>
-                <div className="card">
-                </div>
-                <div className="card p-3 text-right">
-                    <blockquote className="blockquote mb-0">
-                        <img src="https://images.pexels.com/photos/15286/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                    </blockquote>
-                </div>
-                <div className="card">
-                    <div className="card-body">
-                    </div>
-                </div>
-
-                <div className="card">
-                    <div className="card-body">
-                        <img src="https://images.pexels.com/photos/15286/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                    </div>
-                </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div className="card">
-                    <div className="card-body">
-                    </div>
-                </div>
-
-                <div className="card">
-                    <img src="https://images.pexels.com/photos/15286/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" className="card-img-top" alt="..." />
-                    <div className="card-body">
-                    </div>
-                </div>
-
-                <div className="card p-3">
-                    <blockquote className="blockquote mb-0 card-body">
-                    </blockquote>
-                </div>
-                <div className="card">
-                    <img src="https://images.pexels.com/photos/15286/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" className="card-img-top" alt="..." />
-                    <div className="card-body">
-                    </div>
-                </div>
-                <div className="card bg-primary text-white text-center p-3">
-                    <blockquote className="blockquote mb-0">
-                    </blockquote>
-                </div>
-                <div className="card text-center">
-                    <div className="card-body">
-                        <img src="https://images.pexels.com/photos/15286/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                    </div>
-                </div>
-                <div className="card">
-
-                </div>
-                <div className="card p-3 text-right">
-                    <blockquote className="blockquote mb-0">
-                        <img src="https://images.pexels.com/photos/15286/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                    </blockquote>
-                </div>
-                <div className="card">
-                    <div className="card-body">
-                    </div>
-                </div>
-
-                <div className="card">
-                    <div className="card-body">
-                    </div>
-                </div>
             </div>
         </>
     );

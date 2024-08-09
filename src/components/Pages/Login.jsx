@@ -3,60 +3,49 @@ import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Token } from '@mui/icons-material'
 const Login = () => {
-
     const navigate = useNavigate()
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm()
+    const {register, handleSubmit,formState: { errors },} = useForm()
 
     const onSubmit = async (data) => {
-        let r = await fetch("http://localhost:3000/Login/Home", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data)
-        })
-        let res = await r.json()
+        try {
+            let r = await fetch("http://localhost:3000/Login/Home", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data)
+            })
+            let res = await r.json()
 
-        console.log("res Token json:", res.token);
+            console.log("res Token json:", res.token);
 
-        if (!r.ok) {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Invalid Credentials To Check The Email And Password",
-                footer: '<a href="#">Why do I have this issue?</a>'
-            });
-            navigate("/Login")
-            console.log(res);
+            if (!r.ok) {
+                toast.error(res.message)
+                setTimeout(() => {
+                    navigate("/Login")
+                }, 1100);
+            }
+            else {
+                let Token = res.token
+                localStorage.setItem("Token",Token)
+                toast.success("Congratulations! Login Successful")
+                setTimeout(() => {
+                    navigate("/")
+                }, 1100);
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error(error)
         }
-        else {
-            const refreshPage = () => {
-                window.location.reload();
-            };
-            navigate("/")
-
-            localStorage.setItem("Token", res.token)
-            Swal.fire({
-                position: 'center', // Use 'center' instead of 'top-center'
-                icon: 'success',
-                title: 'Congratulations! Login Successful',
-                showConfirmButton: false,
-                timer: 1500
-            });
-            refreshPage();
-            console.log(res);
-        }
-
-
     }
     return (
         <div>
+            <ToastContainer />
             <div className="about-section">
                 <h1 className="about-title">LOGIN<span></span></h1>
             </div>

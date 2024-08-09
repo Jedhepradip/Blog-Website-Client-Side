@@ -19,14 +19,14 @@
   margin: 0;
 }
 
-.dropdown li {
+/* .dropdown li {
   padding: 8px 12px;
   cursor: pointer;
-}
+} */
 
-.dropdown li:hover {
+/* .dropdown li:hover {
   background: #f0f0f0;
-}
+} */
 
 .icon {
   cursor: pointer;
