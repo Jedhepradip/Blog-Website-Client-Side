@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Token } from '@mui/icons-material'
 const Login = () => {
     const navigate = useNavigate()
 
@@ -51,7 +50,7 @@ const Login = () => {
             </div>
             <div className=" flex items-center justify-center p-5">   {/* min-h-screen */}
                 {/* md:w-3/4 mx-auto lg:w-1/3 */}
-                <div className="bg-slate-200 py-5 px-5 rounded-lg mb-5 shadow md:w-[30%] w-[90%]">
+                <div className="bg-slate-50 py-5 px-5 rounded-lg mb-5 shadow md:w-[30%] w-[90%]">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="mb-1">
                             <label className="block mb-2 font-bold text-gray-600">Email</label>

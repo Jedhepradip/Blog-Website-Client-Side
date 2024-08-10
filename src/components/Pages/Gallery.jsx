@@ -57,16 +57,16 @@ const Gallery = () => {
             </div>
             <div className='grid md:grid-cols-3 auto-rows-[300px] gap-4 my-10 overflow-hidden'>
                 {img.map((val, indx) => (
-                    <div key={indx} className={`bg-neutral-100 border-2 rounded-xl flex flex-col items-center justify-center ${indx === 3 || indx === 6 ? 'md:col-span-2' : ''}`}>
-                        <img src={val.img} alt="" className='rounded-xl w-[100%] h-[100%]' />
+                    <div key={indx} className={`bg-neutral-100 overflow-hidden border-2 rounded-xl flex flex-col items-center justify-center ${indx === 3 || indx === 6 ? 'md:col-span-2' : ''}`}>
+                        <img src={val.img} alt="" className='rounded-xl w-[100%] h-[100%] border-black transform transition duration-300 hover:scale-110' />
                     </div>
                 ))}
             </div>
 
             <div className='grid md:grid-cols-4 auto-rows-[300px] gap-4 my-10'>
                 {img2.map((val, indx) => (
-                    <div key={indx} className={`bg-neutral-100 border-2 rounded-xl flex flex-col items-center justify-center ${indx === 0 || indx === 4 || indx === 5 || indx === 6 ? 'md:col-span-2' : ''} ${indx === 2 ? 'md:row-span-2' : ''}`}>
-                        <img src={val.img} alt="" className='rounded-xl w-[100%] h-[100%]' />
+                    <div key={indx} className={`bg-neutral-100 overflow-hidden border-2 rounded-xl flex flex-col items-center justify-center ${indx === 0 || indx === 4 || indx === 5 || indx === 6 ? 'md:col-span-2' : ''} ${indx === 2 ? 'md:row-span-2' : ''}`}>
+                        <img src={val.img} alt="" className='rounded-xl w-[100%] h-[100%] border-black transform transition duration-300 hover:scale-110' />
                     </div>
                 ))}
             </div>

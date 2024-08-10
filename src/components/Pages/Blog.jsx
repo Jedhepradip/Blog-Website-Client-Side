@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { FaRegComment } from 'react-icons/fa6';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Blog = () => {
   const [blogDate, setBlogDate] = useState([]);
-
+  const navigate = useNavigate()
 
   const token = localStorage.getItem("Token")
   const likeblog = async (like) => {
+    if (!token) return navigate("/login")
     const response = await fetch(`http://localhost:3000/blog/like/${like}`, {
       method: "GET",
       headers: {
@@ -44,9 +45,17 @@ const Blog = () => {
 
   useEffect(() => {
     getTheDateToBlogs();
-  }, [likeblog,blogDate]);
+  }, [likeblog, blogDate]);
 
-
+  const handelcommanrts = (Blogcommentid) => {
+    let token = localStorage.getItem("Token")
+    if (!token) {
+      navigate("/login")
+    }
+    else {
+      navigate(`/BlogComment/${Blogcommentid}`)
+    }
+  }
 
   return (
     <>
@@ -113,7 +122,7 @@ const Blog = () => {
         className='p-5 bg-white flex-col py-8 px-4 flex justify-around flex-wrap items-center font-serif'
       >
         <h1 className="text-[50px] font-bold font-serif mb-8">Latest Blogs</h1>
-        <div className="flex justify-around flex-wrap items-center gap-6">
+        <div className="flex justify-evenly flex-wrap items-center gap-6">
           {blogDate.map((val, index) => (
             <div
               key={index}
@@ -133,9 +142,9 @@ const Blog = () => {
                 </a>
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 font-serif">{val.Desc}</p>
                 <a className="inline-flex items-center px-3 py-2 text-sm text-center text-black rounded-lg text-[21px] font-bold">
-                Date  {val.Date} </a>
+                  Date  {val.Date} </a>
 
-                <div className="flex items-center justify-center gap-2 float-right mt-2">
+                <div className="flex items-center justify-center gap-2 float-right mt-2" onClick={() => handelcommanrts(val._id)}>
                   <NavLink to={`/BlogComment/${val._id}`}>
                     <FaRegComment className='font-bold text-2xl text-gray-600 dark:text-gray-300' />
                   </NavLink>
@@ -147,7 +156,7 @@ const Blog = () => {
                     onClick={() => { likeblog(val._id) }}
                     className='relative cursor-pointer font-bold text-3xl text-gray-600 dark:text-gray-300'
                   />
-                  <span className='text-[20px] font-semibold text-gray-600 dark:text-gray-300 mr-5'>{val.likes?.length || 0}</span>
+                  <span className='text-[20px] font-semibold text-gray-600 dark:text-gray-300 mr-5' >{val.likes?.length || 0}</span>
                 </div>
 
               </div>

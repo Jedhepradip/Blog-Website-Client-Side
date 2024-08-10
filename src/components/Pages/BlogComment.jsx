@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ const BlogComment = () => {
     const [comments, setComments] = useState([{}]);
     const [name, setname] = useState([])
     const [currentUserID, setId] = useState([])
+    const userf = useRef(0)
 
     const navigate = useNavigate();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -40,6 +41,8 @@ const BlogComment = () => {
             },
         })
     }
+    console.log(id);
+
 
     const BlogComments = async () => {
         const response = await fetch(`http://localhost:3000/blog/comments/${id}`, {
@@ -53,16 +56,20 @@ const BlogComment = () => {
             console.log(response.status);
             return;
         }
-        const data = await response.json();
-        console.log("data.UserName :", data.UserName);
-        console.log("data.UserId :", data.UserId);
-        setId(data.UserId)
-        setname(data.UserName)
-        setComments(data.comments.comment); // Make sure to set comments array from the response
+        if (response.ok) {
+            const data = await response.json();
+            navigate(`/BlogComment/${id}`)
+            setId(data.UserId)
+            setname(data.UserName)
+            setComments(data.comments.comment); // Make sure to set comments array from the response
+        }
     };
 
     useEffect(() => {
-        BlogComments();
+        if (userf.current == 2) {
+            BlogComments();
+        }
+        userf.current = userf.current + 1
     }, [CommentDelete]);
 
     return (
@@ -94,7 +101,7 @@ const BlogComment = () => {
                         </>
                     ) : (
                         // navigate("/SignIn")
-                      null
+                        null
                     )}
                 </form>
             </div>

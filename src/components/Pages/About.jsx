@@ -7,6 +7,8 @@ const About = () => {
       <div class="about-section">
         <h1 class="about-title">About <span>Us</span></h1>
       </div>
+      <hr className='h-[1.5px] mt-10 w-full bg-gray-900' />
+
       <div className='flex flex-wrap mt-5'>
         <div className='w-full md:w-1/2 flex flex-wrap mt-5 '>
           <div className='w-[50%] md:w-1/2'>
@@ -36,6 +38,8 @@ const About = () => {
           </center>
         </div>
       </div>
+
+      <hr className='h-[1px] mt-10 w-full bg-black' />
 
       <div className='flex flex-wrap mt-5'>
         <div className='w-full md:w-1/2 flex justify-center items-center p-5'>
@@ -69,6 +73,7 @@ const About = () => {
         </div>
       </div>
 
+      <hr className='h-[1.5px] mt-10 w-full bg-gray-900' />
 
       <div className='flex flex-wrap mt-5'>
         <div className='w-full md:w-1/2 flex flex-wrap mt-5 '>
@@ -101,8 +106,8 @@ const About = () => {
           </center>
         </div>
       </div>
+      <hr className='h-[1.5px] mt-10 w-full bg-gray-900' />
     </div>
-
   )
 }
 

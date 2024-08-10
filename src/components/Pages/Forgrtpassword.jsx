@@ -2,6 +2,8 @@ import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Forgrtpassword = () => {
     const [show, setShow] = useState(false); // Fix 2
@@ -30,20 +32,13 @@ const Forgrtpassword = () => {
         const response_Data = await response.json();
         // console.log("response_Data UserId",response_Data.UserId);
         setUserid(response_Data.UserId)
-        if (!response.ok) {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: response_Data.message,
-                footer: '<a href="#">Why do I have this issue?</a>'
-            });
-        } else { // Moved the logic inside else
-            Swal.fire({
-                title: `${response_Data.message}`,
-                text: "You clicked the button!",
-                icon: "success"
-            });
-            showandhide(); // Fix 1
+        if (!response.ok) {          
+            toast.error(response_Data.message)
+        } else { // Moved the logic inside else            
+            toast.success(response_Data.message)
+            setTimeout(()=> {
+                showandhide(); // Fix 1
+            },[1200])
         }
     };
 
@@ -62,34 +57,24 @@ const Forgrtpassword = () => {
             console.log("responseOTP :", responseOTP);
 
             if (!response.ok) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: `${responseOTP.message}`,
-                    footer: '<a href="#">Why do I have this issue?</a>'
-                });
+                toast.error(responseOTP.message)
             } else {
-                Swal.fire({
-                    title: `${responseOTP.message}`,
-                    text: "You clicked the button!",
-                    icon: "success"
-                });
-                navigate(`/Password_to_forget/${UserId}`)
+                toast.success(responseOTP.message)
+                setTimeout(() => {
+                    navigate(`/Password_to_forget/${UserId}`)
+                }, [800])
             }
         } catch (error) {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-                footer: '<a href="#">Why do I have this issue?</a>'
-            });
+            console.log(error);
+            toast.error("Error")
         }
     };
 
     return (
         <div>
-            <div className="flex items-center p-5 mb-16 "> {/* min-h-screen */}
-                <img src="https://media.istockphoto.com/id/537706522/photo/overhead-image-of-a-female-blogger-writing-on-the-laptop.jpg?s=612x612&w=0&k=20&c=DLQWu1ss06K9oEeW6R1tIpGMn58ZlgFyj_wrOWKRFn0=" alt="" className='absolute w-full h-[480px] object-cover blur-md' />
+            <ToastContainer />
+            <div className="flex items-center p-5 mb-16 bg-slate-50"> {/* min-h-screen */}
+                {/* <img src="https://media.istockphoto.com/id/537706522/photo/overhead-image-of-a-female-blogger-writing-on-the-laptop.jpg?s=612x612&w=0&k=20&c=DLQWu1ss06K9oEeW6R1tIpGMn58ZlgFyj_wrOWKRFn0=" alt="" className='absolute w-full h-[480px] object-cover blur-md' /> */}
                 <div className="w-full relative">
                     {/* <h2 className="text-center text-black-600 font-bold text-2xl uppercase mb-5">Forgrt password</h2> */}
                     <div className="about-section font-serif">

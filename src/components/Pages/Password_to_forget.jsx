@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { useNavigate, useParams } from 'react-router-dom';
 // import "./Password.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PasswordToForget = () => {
     const navigate = useNavigate();
@@ -24,41 +26,36 @@ const PasswordToForget = () => {
                     body: JSON.stringify({ password, email }),
                 });
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-
                 const responsePass = await response.json();
-                console.log("responsePass", responsePass);
-                navigate("/Login");
+                if (!response.ok) {
+                    toast.error(responsePass.message)
+                }
+                if (response.ok) {
+                    toast.success(responsePass.message)
+                    console.log("responsePass", responsePass);
+                    setTimeout(() => {
+                        navigate("/Login");
+                    }, [1200])
+                }
             } catch (error) {
                 console.error("Error:", error);
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Failed to create password. Please try again later.",
-                    footer: '<a href="#">Why do I have this issue?</a>',
-                });
+                toast.error(error)
             }
         } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "The passwords do not match. Please try again.",
-                footer: '<a href="#">Why do I have this issue?</a>',
-            });
+            toast.error("The passwords do not match. Please try again.")
         }
     };
 
     return (
         <div>
             <div className="mb-6 flex items-center p-5">
-                <img src="https://media.istockphoto.com/id/537706522/photo/overhead-image-of-a-female-blogger-writing-on-the-laptop.jpg?s=612x612&w=0&k=20&c=DLQWu1ss06K9oEeW6R1tIpGMn58ZlgFyj_wrOWKRFn0=" alt="" className='absolute w-full h-[480px] object-cover blur-md' />
+                <ToastContainer />
+                {/* <img src="https://media.istockphoto.com/id/537706522/photo/overhead-image-of-a-female-blogger-writing-on-the-laptop.jpg?s=612x612&w=0&k=20&c=DLQWu1ss06K9oEeW6R1tIpGMn58ZlgFyj_wrOWKRFn0=" alt="" className='absolute w-full h-[480px] object-cover blur-md' /> */}
                 <div className="w-full relative">
                     <div className="about-section">
                         <h1 className="about-title">Create New<span className='ml-5'>Password...</span></h1>
                     </div>
-                    <div className="bg-white p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/3 font-serif">
+                    <div className="bg-whie bg-slate-50 p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/3 font-serif">
                         <form onSubmit={handleSubmit(onSubmit)}>
 
                             <div className="mb-1"> {/* Fix 3 */}

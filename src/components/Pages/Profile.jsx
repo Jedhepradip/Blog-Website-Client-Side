@@ -245,8 +245,19 @@ const Profile = () => {
                                     </div>
                                 </div>
 
-                                
 
+                                <div className="mt-6">
+                        <h3 className="text-xl font-semibold text-gray-700">Post Blog History</h3>
+                        <div className="mt-4">
+                            {/* {BookingId.map((val, index) => ( */}
+                                <div className="bg-gray-50 p-4 rounded-lg shadow-md mb-4">
+                                    <h4 className="font-semibold text-gray-700">Post Blog :<span className='ml-4 '>{blogDate.length}</span></h4>
+                                </div>
+                            {/* ))} */}
+                        </div>
+                    </div>
+
+                                
                                 <div className="mt-6">
                                     <h3 className="text-xl font-semibold text-gray-700">Account Settings</h3>
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 font-serif">
@@ -434,7 +445,7 @@ const Profile = () => {
             <div className='p-5 bg-slate-50 flex justify-around flex-wrap items-center font-serif'>
                 {blogDate.map((val, index) => (
                     <div key={index} className="max-w-sm md:mt-0 mt-[50px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                        <div className="float-right font-serif text-[20px] relative">
+                        <div className="float-right font-serif text-[20px] relative" >
                             <div>
                                 <BsThreeDotsVertical onClick={() => toggleDiv(index)} className="icon" />
                                 {visibleDropdown === index && (
@@ -449,7 +460,7 @@ const Profile = () => {
                             </div>
                         </div>
 
-                        <div className='overflow-hidden w-full h-full'>
+                        <div className='overflow-hidden w-full h-full' onMouseOver={()=> toggleDiv(100)}>
                             <img
                                 src={`http://localhost:3000/${val.Image}`}
                                 alt="Image"
