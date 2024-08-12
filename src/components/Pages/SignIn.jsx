@@ -69,11 +69,11 @@ const SignIn = () => {
         <div>
             {/* {console.log("dateData",dateData.Name)} */}
             <ToastContainer />
-            <div className="bg-blue-200  flex items-center p-5 font-serif">   {/* min-h-screen */}
-                <img src="https://media.istockphoto.com/id/1093508248/photo/modern-work-table-with-computer-laptop-and-cityscapes-view-from-window-business-concepts-ideas.jpg?s=612x612&w=0&k=20&c=vpMc1UR6KfgPe4GYcFG4x1FfPKLyYsoKqrAJolfBSZs=" alt="" className='absolute w-full h-[550px] object-cover blur-md' />
-                <div className="w-full relative">
+            <div className="bg-white justify-center flex items-center p-5 font-serif">   {/* min-h-screen */}
+                {/* <img src="https://media.istockphoto.com/id/1093508248/photo/modern-work-table-with-computer-laptop-and-cityscapes-view-from-window-business-concepts-ideas.jpg?s=612x612&w=0&k=20&c=vpMc1UR6KfgPe4GYcFG4x1FfPKLyYsoKqrAJolfBSZs=" alt="" className='absolute w-full h-[550px] object-cover blur-md' /> */}
+                <div className="w-[95%] relative">
 
-                    <div className="bg-white pl-10 pr-10 pb-10 pt-2 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/3">
+                    <div className=" pl-8 pr-8 pb-8 pt-2 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/3">
                         <div className='flex justify-center items-center py-0 px-2'>
                             <h1 className='text-[35px] font-serif p-3'>Registration</h1>
                         </div>
@@ -84,7 +84,7 @@ const SignIn = () => {
                                     required: { value: true, message: "This Field Is Required" },
                                     minLength: { value: 5, message: "Min Length Is 5" },
                                     maxLength: { value: 15, message: "Max Length Is 15" }
-                                })} type="text" id="name" placeholder="Put In Your Fullname." className="border border-gray-300 shadow p-3 w-full rounded mb-" />
+                                })} type="text" id="name" placeholder="Put In Your Fullname." className="border border-gray-300 shadow p-3 w-full rounded" />
                                 {errors.name && <div className='block mb-2 font-bold text-center text-red-500'>{errors.name.message}</div>}
                             </div>
 
@@ -94,7 +94,7 @@ const SignIn = () => {
                                     required: { value: true, message: "This Field Is Required" },
                                     minLength: { value: 10, message: "Min Length Is 10" },
                                     maxLength: { value: 30, message: "Max Length Is 30" },
-                                })} type="email" id="email" placeholder="Put In Your Email." className="border border-gray-300 shadow p-3 w-full rounded mb-" />
+                                })} type="email" id="email" placeholder="Put In Your Email." className="border border-gray-300 shadow p-3 w-full rounded" />
                                 {errors.email && <div className='block mb-2 font-bold  text-center text-red-500'>{errors.email.message}</div>}
                                 {emailerror && <div className='block mb-2 font-bold  text-center text-red-500'>{emailerror}</div>}
                             </div>
@@ -105,7 +105,7 @@ const SignIn = () => {
                                     required: { value: true, message: "This Field Is Required" },
                                     minLength: { value: 8, message: "Min Length Is 8" },
                                     maxLength: { value: 12, message: "Max Length Is 12" }
-                                })} type="password" id="password" placeholder="Put In Your Password." className="border border-gray-300 shadow p-3 w-full rounded mb-" />
+                                })} type="password" id="password" placeholder="Put In Your Password." className="border border-gray-300 shadow p-3 w-full rounded" />
                                 {errors.password && <div className='block mb-2 font-bold  text-center text-red-500'>{errors.password.message}</div>}
                             </div>
 
@@ -115,7 +115,7 @@ const SignIn = () => {
                                     required: { value: true, message: "This Field Is Required" },
                                     minLength: { value: 6, message: "Min Length Is 6" },
                                     maxLength: { value: 10, message: "Max Length Is 10" }
-                                })} type="password" id="Cpassword" placeholder="Put In Your Password." className="border border-gray-300 shadow p-3 w-full rounded mb-" />
+                                })} type="password" id="Cpassword" placeholder="Put In Your Password." className="border border-gray-300 shadow p-3 w-full rounded" />
                                 {errors.Cpassword && <div className='block mb-2 font-bold  text-center text-red-500'>{errors.Cpassword.message}</div>}
                             </div>
 

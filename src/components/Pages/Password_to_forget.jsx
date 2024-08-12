@@ -48,7 +48,7 @@ const PasswordToForget = () => {
 
     return (
         <div>
-            <div className="mb-6 flex items-center p-5">
+            <div className="mb-6 flex items-center p-5 font-serif">
                 <ToastContainer />
                 {/* <img src="https://media.istockphoto.com/id/537706522/photo/overhead-image-of-a-female-blogger-writing-on-the-laptop.jpg?s=612x612&w=0&k=20&c=DLQWu1ss06K9oEeW6R1tIpGMn58ZlgFyj_wrOWKRFn0=" alt="" className='absolute w-full h-[480px] object-cover blur-md' /> */}
                 <div className="w-full relative">

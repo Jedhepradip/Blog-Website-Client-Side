@@ -45,10 +45,10 @@ const Login = () => {
     return (
         <div>
             <ToastContainer />
-            <div className="about-section">
+            <div className="about-section font-serif">
                 <h1 className="about-title">LOGIN<span></span></h1>
             </div>
-            <div className=" flex items-center justify-center p-5">   {/* min-h-screen */}
+            <div className=" flex items-center justify-center p-5 font-serif">   {/* min-h-screen */}
                 {/* md:w-3/4 mx-auto lg:w-1/3 */}
                 <div className="bg-slate-50 py-5 px-5 rounded-lg mb-5 shadow md:w-[30%] w-[90%]">
                     <form onSubmit={handleSubmit(onSubmit)}>

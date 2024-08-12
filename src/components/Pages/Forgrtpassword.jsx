@@ -73,10 +73,9 @@ const Forgrtpassword = () => {
     return (
         <div>
             <ToastContainer />
-            <div className="flex items-center p-5 mb-16 bg-slate-50"> {/* min-h-screen */}
-                {/* <img src="https://media.istockphoto.com/id/537706522/photo/overhead-image-of-a-female-blogger-writing-on-the-laptop.jpg?s=612x612&w=0&k=20&c=DLQWu1ss06K9oEeW6R1tIpGMn58ZlgFyj_wrOWKRFn0=" alt="" className='absolute w-full h-[480px] object-cover blur-md' /> */}
+            <div className="flex items-center p-5 mb-16 bg-slate-50 font-serif"> {/* min-h-screen */}               
                 <div className="w-full relative">
-                    {/* <h2 className="text-center text-black-600 font-bold text-2xl uppercase mb-5">Forgrt password</h2> */}
+                    
                     <div className="about-section font-serif">
                         <h1 className="about-title">SEND <span>OPT</span></h1>
                     </div>
