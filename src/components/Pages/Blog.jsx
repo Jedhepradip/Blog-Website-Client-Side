@@ -24,7 +24,7 @@ const Blog = () => {
 
   const getTheDateToBlogs = async () => {
     try {
-      const response = await fetch('http://localhost:3000/Blog/Date', {
+      const response = await fetch('https://blog-website-server-side.onrender.com/Blog/Date', {
         method: 'GET',
         headers: {
           "Content-Type": "application/json",
