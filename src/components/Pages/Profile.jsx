@@ -462,7 +462,7 @@ const Profile = () => {
 
                         <div className='overflow-hidden w-full h-full' onMouseOver={()=> toggleDiv(100)}>
                             <img
-                                src={`http://localhost:3000/${val.Image}`}
+                                src={val.Image}
                                 alt="Image"
                                 className="rounded-lg p-1 w-[100%] h-[260px] transform transition duration-300 hover:scale-110 hover:rounded-lg"
                             />

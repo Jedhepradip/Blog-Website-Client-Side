@@ -130,7 +130,7 @@ const Blog = () => {
             >
               <div className='overflow-hidden'>
                 <img
-                  src={`http://localhost:3000/${val.Image}`}
+                  src={val.Image}
                   alt="Image"
                   className="p-1 w-[100%] h-[280px] object-cover rounded-t-lg rounded-l transform transition duration-300 hover:scale-110 hover:rounded-l"
                 />
