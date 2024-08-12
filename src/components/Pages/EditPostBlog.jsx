@@ -104,8 +104,8 @@ const EditPostBlog = () => {
                                     <input
                                         {...register("Title", {
                                             required: { value: true, message: "Click to The Check Box || This Field Is Required" },
-                                            minLength: { value: 40, message: "Min Length is 40 Words" },
-                                            maxLength: { value: 80, message: "Max Length Is 80 Words" }
+                                            minLength: { value: 40, message: "Min Length is 40 Letter" },
+                                            maxLength: { value: 80, message: "Max Length Is 80 Letter" }
                                         })}
                                         type="text"
                                         id="Title"
@@ -121,8 +121,8 @@ const EditPostBlog = () => {
                                     <textarea
                                         {...register("Desc", {
                                             required: { value: true, message: "Click to The Check Box || This Field Is Required" },
-                                            minLength: { value: 210, message: "Min Length is 210 Words" },
-                                            maxLength: { value: 250, message: "Max Length Is 250 Words" }
+                                            minLength: { value: 210, message: "Min Length is 210 Letter" },
+                                            maxLength: { value: 250, message: "Max Length Is 250 Letter" }
                                         })}
                                         id="Desc"
                                         defaultValue={defaultdate.Desc}

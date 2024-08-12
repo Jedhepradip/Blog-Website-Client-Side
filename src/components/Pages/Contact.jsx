@@ -1,8 +1,10 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { json } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom'
 const Contact = () => {
+
+  const Navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -19,7 +21,9 @@ const Contact = () => {
         body: JSON.stringify(data)
       })
       if (!response.ok) return console.log(response.status);
-
+      if (response.ok) {
+        Navigate("/")
+      }
     } catch (error) {
       console.log(error);
     }

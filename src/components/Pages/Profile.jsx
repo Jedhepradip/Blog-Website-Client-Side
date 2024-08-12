@@ -386,8 +386,8 @@ const Profile = () => {
                                                 <input
                                                     {...register("Title", {
                                                         required: { value: true, message: "This Field Is Required" },
-                                                        minLength: { value: 40, message: "Min Length is 40 Word" },
-                                                        maxLength: { value: 80, message: "Max Length Is 80 word" }
+                                                        minLength: { value: 40, message: "Min Length is 40 Letter" },
+                                                        maxLength: { value: 80, message: "Max Length Is 80 Letter" }
                                                     })}
                                                     type="text"
                                                     id="Title"
@@ -402,8 +402,8 @@ const Profile = () => {
                                                 <textarea
                                                     {...register("Desc", {
                                                         required: { value: true, message: "This Field Is Required" },
-                                                        minLength: { value: 210, message: "Min Length is 210 Word" },
-                                                        maxLength: { value: 250, message: "Max Length Is 250 word" }
+                                                        minLength: { value: 210, message: "Min Length is 210 Letter" },
+                                                        maxLength: { value: 250, message: "Max Length Is 250 Letter" }
                                                     })}
 
                                                     type="text"
