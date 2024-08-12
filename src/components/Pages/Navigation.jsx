@@ -53,17 +53,17 @@ const Navigation = () => {
             </li>
 
             <li>
-              <NavLink to={"/Gallery"} className="block py-2 px-3 rounded hover:bg-gray-100 hover:text-black md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:hover:bg-white md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent bg-gray-700 text-white md:mt-0 mt-3"><h1 className='p-1 px-3'>Gallery</h1></NavLink>
+              <NavLink to={"/Gallery"} className="block py-2 px-3 rounded hover:bg-gray-100 hover:text-black md:hover:bg-transparent md:border-0 md:hover:text-black md:hover:bg-white md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent bg-gray-700 text-white md:mt-0 mt-3"><h1 className='p-1 px-3'>Gallery</h1></NavLink>
             </li>
 
             <li>
-              <NavLink to={"/Contact"} className="block py-2 px-3 rounded hover:bg-gray-100 hover:text-black md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:hover:bg-white md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent bg-gray-700 text-white md:mt-0 mt-3"><h1 className='p-1 px-3'>Contact</h1></NavLink>
+              <NavLink to={"/Contact"} className="block py-2 px-3 rounded hover:bg-gray-100 hover:text-black md:hover:bg-transparent md:border-0 md:hover:text-black md:hover:bg-white md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent bg-gray-700 text-white md:mt-0 mt-3"><h1 className='p-1 px-3'>Contact</h1></NavLink>
             </li>
 
             {Token ?
               <>
                 <li>
-                  <NavLink to={"/Profile"} className="block py-2 px-3 rounded hover:bg-gray-100 hover:text-black md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:hover:bg-white md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent bg-gray-700 text-white md:mt-0 mt-3"><h1 className='py-1 px-3'>Profile</h1></NavLink>
+                  <NavLink to={"/Profile"} className="block py-2 px-3 rounded hover:bg-gray-100 hover:text-black md:hover:bg-transparent md:border-0 md:hover:text-black md:hover:bg-white md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent bg-gray-700 text-white md:mt-0 mt-3"><h1 className='py-1 px-3'>Profile</h1></NavLink>
                 </li>
               </>
               :
