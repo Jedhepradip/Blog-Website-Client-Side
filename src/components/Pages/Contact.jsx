@@ -11,7 +11,7 @@ const Contact = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch("http://localhost:3000/User/Contact", {
+      const response = await fetch("https://blog-website-server-side.onrender.com/User/Contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

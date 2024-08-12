@@ -34,7 +34,7 @@ const Profile = () => {
                 return navigate("/SignIn");
             }
             try {
-                const response = await fetch('http://localhost:3000/user/profile', {
+                const response = await fetch('https://blog-website-server-side.onrender.com/user/profile', {
                     method: 'GET',
                     headers: {
                         authorization: `Bearer ${token}`,
@@ -70,7 +70,7 @@ const Profile = () => {
 
     // User Like Blogs
     const likeblog = async (like) => {
-        const response = await fetch(`http://localhost:3000/blog/like/${like}`, {
+        const response = await fetch(`https://blog-website-server-side.onrender.com/blog/like/${like}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -110,7 +110,7 @@ const Profile = () => {
         console.log("pradip", obj);
         try {
             const token = localStorage.getItem("Token");
-            const response = await fetch("http://localhost:3000/User/Profile/Edit", {
+            const response = await fetch("https://blog-website-server-side.onrender.com/User/Profile/Edit", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -145,7 +145,7 @@ const Profile = () => {
     const DeleteOnclick = async (BlogId) => {
         try {
             console.log("BlogId", BlogId);
-            const response = await fetch(`http://localhost:3000/BlogPostDelete/${BlogId}`, {
+            const response = await fetch(`https://blog-website-server-side.onrender.com/BlogPostDelete/${BlogId}`, {
                 method: 'DELETE',
             });
 
@@ -177,7 +177,7 @@ const Profile = () => {
 
         try {
             const token = localStorage.getItem("Token");
-            const response = await fetch("http://localhost:3000/BlogPost", {
+            const response = await fetch("https://blog-website-server-side.onrender.com/BlogPost", {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,

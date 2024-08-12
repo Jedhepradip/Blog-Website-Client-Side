@@ -12,7 +12,7 @@ const Login = () => {
 
     const onSubmit = async (data) => {
         try {
-            let r = await fetch("http://localhost:3000/Login/Home", {
+            let r = await fetch("https://blog-website-server-side.onrender.com/Login/Home", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

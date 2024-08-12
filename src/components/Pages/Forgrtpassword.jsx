@@ -22,7 +22,7 @@ const Forgrtpassword = () => {
 
     const onSubmit = async (data) => {
         console.log("Forgrtpassword :", data);
-        const response = await fetch("http://localhost:3000/Forgrtpassword/Email", {
+        const response = await fetch("https://blog-website-server-side.onrender.com/Forgrtpassword/Email", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const Forgrtpassword = () => {
     const onSubmitOTP = async (data) => {
         console.log(data);
         try {
-            const response = await fetch("http://localhost:3000/Forgrtpassword/OTP", {
+            const response = await fetch("https://blog-website-server-side.onrender.com/Forgrtpassword/OTP", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

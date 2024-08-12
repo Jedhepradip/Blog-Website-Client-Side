@@ -10,7 +10,7 @@ const Blog = () => {
   const token = localStorage.getItem("Token")
   const likeblog = async (like) => {
     if (!token) return navigate("/login")
-    const response = await fetch(`http://localhost:3000/blog/like/${like}`, {
+    const response = await fetch(`https://blog-website-server-side.onrender.com/blog/like/${like}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

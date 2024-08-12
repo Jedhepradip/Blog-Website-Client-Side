@@ -16,7 +16,7 @@ const BlogComment = () => {
     const token = localStorage.getItem("Token");
 
     const onSubmit = async (data) => {
-        const response = await fetch(`http://localhost:3000/comment/blog/${id}`, {
+        const response = await fetch(`https://blog-website-server-side.onrender.com/comment/blog/${id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -34,7 +34,7 @@ const BlogComment = () => {
     };
 
     const CommentDelete = async (BlogId) => {
-        const response = await fetch(`http://localhost:3000/${BlogId}/BlogId/${id}`, {
+        const response = await fetch(`https://blog-website-server-side.onrender.com/${BlogId}/BlogId/${id}`, {
             method: "PUT",
             headers: {
                 Authorization: `Bearer ${token}`
@@ -45,7 +45,7 @@ const BlogComment = () => {
 
 
     const BlogComments = async () => {
-        const response = await fetch(`http://localhost:3000/blog/comments/${id}`, {
+        const response = await fetch(`https://blog-website-server-side.onrender.com/blog/comments/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

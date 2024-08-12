@@ -32,7 +32,7 @@ const EditPostBlog = () => {
 
         try {
             const token = localStorage.getItem("Token");
-            const response = await fetch(`http://localhost:3000/blog/edit/${id}`, {
+            const response = await fetch(`https://blog-website-server-side.onrender.com/blog/edit/${id}`, {
                 method: "PUT",
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -59,7 +59,7 @@ const EditPostBlog = () => {
     useEffect(() => {
         const getthedatainBlogPost = async () => {
             const token = localStorage.getItem("Token")
-            const response = await fetch(`http://localhost:3000/findBlog/${id}`, {
+            const response = await fetch(`https://blog-website-server-side.onrender.com/findBlog/${id}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

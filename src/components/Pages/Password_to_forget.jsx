@@ -18,7 +18,7 @@ const PasswordToForget = () => {
 
         if (password === Cpassword) {
             try {
-                const response = await fetch(`http://localhost:3000/CreatePassword/${id}`, {
+                const response = await fetch(`https://blog-website-server-side.onrender.com/CreatePassword/${id}`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
